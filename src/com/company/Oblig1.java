@@ -11,7 +11,7 @@ public class Oblig1 {
         System.out.println("Jalla");
 
         int a[] = {1,3,2,1,31,2,5};
-        int a[] = {0};
+        //int a[] = {0};
 
         System.out.println(maks(a));
         System.out.println(antallUlikeUsortert(a));
@@ -32,14 +32,13 @@ public class Oblig1 {
                 a[i] = a[i + 1];
                 a[i + 1] = temp;
             }
-        }return a[a.length-1];
+        }
+        return a[a.length - 1];
     }
 
     public static int ombyttinger(int[] a) {
         throw new UnsupportedOperationException();
     }
-
-
 
 
     ///// Oppgave 2 //////////////////////////////////////
@@ -54,15 +53,15 @@ public class Oblig1 {
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
 
-        for(int i=0; i<n; i++){
-            if(!ulikeTall.contains(a[i])){
+        for (int i = 0; i < n; i++) {
+            if (!ulikeTall.contains(a[i])) {
                 ulikeTall.add(a[i]);
             }
         }
 
-        if(ulikeTall.size() ==1){
+        if (ulikeTall.size() == 1) {
             antallUlike = 0;
-        } else{
+        } else {
             antallUlike = ulikeTall.size();
         }
         return antallUlike;
