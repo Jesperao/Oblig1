@@ -9,14 +9,18 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        int a[] = {1,3,2,1,31,2};
+        //int a[] = {1,3,2,1,31,2,5};
+
+        int a[] = {0};
         System.out.println(maks(a));
+        System.out.println(antallUlikeUsortert(a));
     }
 
     private Oblig1() {
     }
 
     ///// Oppgave 1 //////////////////////////////////////
+
     public static int maks(int[] a) {
         if (a.length == 0) {
             throw new UnsupportedOperationException("Arrayet er heelt tomt");
@@ -34,6 +38,9 @@ public class Oblig1 {
         throw new UnsupportedOperationException();
     }
 
+
+
+
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
         throw new UnsupportedOperationException();
@@ -41,7 +48,22 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException("ånæi.. array er tom");
+        int antallUlike = 0;
+        if (a.length == 0){
+            return antallUlike;
+        }
+        for(int i=0; i < a.length; ++i){
+            boolean add = true;
+            for(int j=i-1; j >= 0; --j){
+                if(a[i] == a[j]){
+                    add = false;
+                }
+            }
+            if(add){
+                antallUlike++;
+            }
+        }
+        return antallUlike;
     }
 
     ///// Oppgave 4 //////////////////////////////////////
