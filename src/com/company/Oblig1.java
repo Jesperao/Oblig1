@@ -5,18 +5,29 @@ package com.company;
 import java.lang.UnsupportedOperationException;
 
 
-
-
-
 public class Oblig1 {
-    public static void main(String[] args){
-System.out.println();
+    public static void main(String[] args) {
+        System.out.println("Jalla");
+
+        int a[] = {1,3,2,1,31,2};
+        System.out.println(maks(a));
     }
-    private Oblig1() {}
+
+    private Oblig1() {
+    }
 
     ///// Oppgave 1 //////////////////////////////////////
     public static int maks(int[] a) {
-        throw new UnsupportedOperationException();
+        if (a.length == 0) {
+            throw new UnsupportedOperationException("Arrayet er heelt tomt");
+        }
+        for (int i = 0; i < a.length - 1; ++i) {
+            if (a[i] > a[i + 1]) {
+                int temp = a[i];
+                a[i] = a[i + 1];
+                a[i + 1] = temp;
+            }
+        }return a[a.length-1];
     }
 
     public static int ombyttinger(int[] a) {
