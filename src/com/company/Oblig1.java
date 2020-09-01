@@ -3,14 +3,20 @@ package com.company;
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
 import java.lang.UnsupportedOperationException;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        int a[] = {1,3,2,1,31,2};
+        int a[] = {7, 2, 1, 2, 11, 22, 21};
+        System.out.println(ombyttinger(a));
         System.out.println(maks(a));
+        System.out.println(Arrays.toString(a));
+        System.out.println(ombyttinger(a));
+
     }
 
     private Oblig1() {
@@ -19,7 +25,7 @@ public class Oblig1 {
     ///// Oppgave 1 //////////////////////////////////////
     public static int maks(int[] a) {
         if (a.length == 0) {
-            throw new UnsupportedOperationException("Arrayet er heelt tomt");
+            throw new NoSuchElementException("Arrayet er heelt tomt");
         }
         for (int i = 0; i < a.length - 1; ++i) {
             if (a[i] > a[i + 1]) {
@@ -27,11 +33,24 @@ public class Oblig1 {
                 a[i] = a[i + 1];
                 a[i + 1] = temp;
             }
-        }return a[a.length-1];
+        }
+        return a[a.length - 1];
     }
 
     public static int ombyttinger(int[] a) {
-        throw new UnsupportedOperationException();
+        if (a.length == 0) {
+            throw new NoSuchElementException("Arrayet er fortsatt heelt tomt");
+        }
+        int count = 0;
+        for (int j = 0; j < a.length - 1; ++j) {
+            if (a[j] > a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+                count++;
+            }
+        }
+        return count;
     }
 
     ///// Oppgave 2 //////////////////////////////////////
