@@ -11,7 +11,14 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        int a[] = {7, 2, 1, 2, 11, 22, 21};
+       // int a[] = {1,2,3};
+       // int a[] = {1,3,2};
+       // int a[] = {2,1,3};
+       // int a[] = {2,3,1};
+       // int a[] = {3,1,2};
+        int a[] = {3,2,1};
+
+
         System.out.println(ombyttinger(a));
         System.out.println(maks(a));
         System.out.println(Arrays.toString(a));
@@ -52,6 +59,21 @@ public class Oblig1 {
         }
         return count;
     }
+
+    /*
+    Når blir det flest ombyttinger?
+     - Når det største tallet står først blir det flest ombyttinger
+    Når blir det færrest?
+     - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
+     Hvor mange blir det i gjennomsnitt?
+      -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
+
+      Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
+      de maks-metodene vi har sett på tidligere?
+       - 
+
+
+     */
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
