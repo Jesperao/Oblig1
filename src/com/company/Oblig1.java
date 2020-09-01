@@ -3,6 +3,7 @@ package com.company;
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
 import java.lang.UnsupportedOperationException;
+import java.util.ArrayList;
 
 
 public class Oblig1 {
@@ -59,7 +60,25 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException();
+        int n = a.length;
+        int antallUlike = 0;
+
+        ArrayList<Integer> ulikeTall = new ArrayList<>();
+
+        for(int i=0; i<n; i++){
+            if(!ulikeTall.contains(a[i])){
+                ulikeTall.add(a[i]);
+            }
+        }
+
+        if(ulikeTall.size() ==1){
+            antallUlike = 0;
+        } else{
+            antallUlike = ulikeTall.size();
+        }
+        return antallUlike;
+
+
     }
 
     ///// Oppgave 4 //////////////////////////////////////
@@ -70,7 +89,6 @@ public class Oblig1 {
     ///// Oppgave 5 //////////////////////////////////////
     public static void rotasjon(char[] a) {
         throw new UnsupportedOperationException();
-
     }
 
     ///// Oppgave 6 //////////////////////////////////////
