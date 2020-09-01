@@ -41,7 +41,7 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("ånæi.. array er tom");
     }
 
     ///// Oppgave 4 //////////////////////////////////////
