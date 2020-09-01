@@ -3,15 +3,16 @@ package com.company;
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
 import java.lang.UnsupportedOperationException;
+import java.util.ArrayList;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        //int a[] = {1,3,2,1,31,2,5};
-
+        int a[] = {1,3,2,1,31,2,5};
         int a[] = {0};
+
         System.out.println(maks(a));
         System.out.println(antallUlikeUsortert(a));
     }
@@ -48,22 +49,25 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
+        int n = a.length;
         int antallUlike = 0;
-        if (a.length == 0){
-            return antallUlike;
+
+        ArrayList<Integer> ulikeTall = new ArrayList<>();
+
+        for(int i=0; i<n; i++){
+            if(!ulikeTall.contains(a[i])){
+                ulikeTall.add(a[i]);
+            }
         }
-        for(int i=0; i < a.length; ++i){
-            boolean add = true;
-            for(int j=i-1; j >= 0; --j){
-                if(a[i] == a[j]){
-                    add = false;
-                }
-            }
-            if(add){
-                antallUlike++;
-            }
+
+        if(ulikeTall.size() ==1){
+            antallUlike = 0;
+        } else{
+            antallUlike = ulikeTall.size();
         }
         return antallUlike;
+
+
     }
 
     ///// Oppgave 4 //////////////////////////////////////
