@@ -47,7 +47,7 @@ public class Oblig1 {
             if (a[i] < a[i + 1]) {
                 count++;
             }
-            else if (a[i] == a[i + 1]){
+            else if(a[i] == a[i + 1]){
                 //Ingen forandring hvis lik.
             }
             else {
@@ -70,6 +70,7 @@ public class Oblig1 {
     ///// Oppgave 5 //////////////////////////////////////
     public static void rotasjon(char[] a) {
         throw new UnsupportedOperationException();
+
     }
 
     ///// Oppgave 6 //////////////////////////////////////
