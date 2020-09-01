@@ -9,8 +9,8 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        int a[] = {1,3,2,1,31,2};
-        System.out.println(maks(a));
+        int a[] = {5, 2, 2, 2, 2, 2};
+        System.out.println(antallUlikeSortert(a));
     }
 
     private Oblig1() {
@@ -27,7 +27,8 @@ public class Oblig1 {
                 a[i] = a[i + 1];
                 a[i + 1] = temp;
             }
-        }return a[a.length-1];
+        }
+        return a[a.length - 1];
     }
 
     public static int ombyttinger(int[] a) {
@@ -36,7 +37,24 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
-        throw new UnsupportedOperationException();
+        if (a.length == 0) {
+            return 0;
+        }
+        int count = 1;
+        int begin = 0;
+        int end = a.length - 1;
+        for (int i = begin; i < end; i++) {
+            if (a[i] < a[i + 1]) {
+                count++;
+            }
+            else if (a[i] == a[i + 1]){
+                //Ingen forandring hvis lik.
+            }
+            else {
+                throw new IllegalStateException("Arrayet er ikke sortert");
+            }
+        }
+        return count;
     }
 
     ///// Oppgave 3 //////////////////////////////////////
