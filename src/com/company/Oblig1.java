@@ -11,10 +11,16 @@ public class Oblig1 {
         System.out.println("Jalla");
 
         int a[] = {1,3,2,1,31,2,5};
-        //int a[] = {0};
+        int a[] = {0};
 
         System.out.println(maks(a));
         System.out.println(antallUlikeUsortert(a));
+
+        String a = flett("ABC", "DEFGH");
+        String b = flett("IJKLMN", "OPQ");
+        String c = flett("", "AB");
+
+        System.out.println(a + " " + b + " " + c);
     }
 
     private Oblig1() {
@@ -87,7 +93,24 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new UnsupportedOperationException();
+        String flette = "";
+        int lengdePåString = 0;
+
+        if (s.length() < t.length()) {
+            lengdePåString = t.length();
+        } else {
+            lengdePåString = s.length();
+        }
+
+        for (int i = 0; i < lengdePåString; ++i) {
+            if (i < s.length()) {
+                flette += s.charAt(i);
+            }
+            if (i < t.length()) {
+                flette += t.charAt(i);
+            }
+        }
+        return flette;
     }
 
     /// 7b)
