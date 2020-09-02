@@ -10,8 +10,9 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
 
-        int a[] = {5, 2, 2, 2, 2, 2};
-        System.out.println(antallUlikeSortert(a));
+        //int a[] = {5, 2, 2, 2, 2, 2};
+        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        System.out.println(rotasjon(a));
     }
 
     private Oblig1() {
@@ -47,11 +48,9 @@ public class Oblig1 {
         for (int i = begin; i < end; i++) {
             if (a[i] < a[i + 1]) {
                 count++;
-            }
-            else if(a[i] == a[i + 1]){
+            } else if (a[i] == a[i + 1]) {
                 //Ingen forandring hvis lik.
-            }
-            else {
+            } else {
                 throw new IllegalStateException("Arrayet er ikke sortert");
             }
         }
@@ -65,15 +64,15 @@ public class Oblig1 {
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
 
-        for(int i=0; i<n; i++){
-            if(!ulikeTall.contains(a[i])){
+        for (int i = 0; i < n; i++) {
+            if (!ulikeTall.contains(a[i])) {
                 ulikeTall.add(a[i]);
             }
         }
 
-        if(ulikeTall.size() ==1){
+        if (ulikeTall.size() == 1) {
             antallUlike = 0;
-        } else{
+        } else {
             antallUlike = ulikeTall.size();
         }
         return antallUlike;
@@ -87,8 +86,13 @@ public class Oblig1 {
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    public static void rotasjon(char[] a) {
-        throw new UnsupportedOperationException();
+    public static char[] rotasjon(char[] a) {
+        for (int i = a.length - 1; i > 0; i--) {
+            char temp = a[i];
+            a[i] = a[i - 1];
+            a[i - 1] = temp;
+        }
+        return a;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
