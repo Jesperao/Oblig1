@@ -3,8 +3,7 @@ package com.company;
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
 import java.lang.UnsupportedOperationException;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 
 
 public class Oblig1 {
@@ -12,26 +11,17 @@ public class Oblig1 {
         System.out.println("Jalla");
         int a[] = {2,4,6,10,8};
 
-       /*  int a[] = {1,2,3};
-         int a[] = {1,3,2};
-         int a[] = {2,1,3};
-        int a[] = {2,3,1};
-         int a[] = {3,1,2};
-        int a[] = {3, 2, 1};
+        int a[] = {1,3,2,1,31,2,5};
+        int a[] = {0};
 
-        int a[] = {5, 2, 2, 2, 2, 2};
-        System.out.println(antallUlikeSortert(a));
-
-        System.out.println(ombyttinger(a));
         System.out.println(maks(a));
-        System.out.println(Arrays.toString(a));
-        System.out.println(ombyttinger(a));
+        System.out.println(antallUlikeUsortert(a));
 
-        */
+        String a = flett("ABC", "DEFGH");
+        String b = flett("IJKLMN", "OPQ");
+        String c = flett("", "AB");
 
-       delsortering(a);
-        System.out.println(Arrays.toString(a));
-
+        System.out.println(a + " " + b + " " + c);
     }
 
     private Oblig1() {
@@ -107,7 +97,25 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new UnsupportedOperationException();
+        int n = a.length;
+        int antallUlike = 0;
+
+        ArrayList<Integer> ulikeTall = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (!ulikeTall.contains(a[i])) {
+                ulikeTall.add(a[i]);
+            }
+        }
+
+        if (ulikeTall.size() == 1) {
+            antallUlike = 0;
+        } else {
+            antallUlike = ulikeTall.size();
+        }
+        return antallUlike;
+
+
     }
 
     ///// Oppgave 4 //////////////////////////////////////
@@ -144,7 +152,24 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new UnsupportedOperationException();
+        String flette = "";
+        int lengdePåString = 0;
+
+        if (s.length() < t.length()) {
+            lengdePåString = t.length();
+        } else {
+            lengdePåString = s.length();
+        }
+
+        for (int i = 0; i < lengdePåString; ++i) {
+            if (i < s.length()) {
+                flette += s.charAt(i);
+            }
+            if (i < t.length()) {
+                flette += t.charAt(i);
+            }
+        }
+        return flette;
     }
 
     /// 7b)
