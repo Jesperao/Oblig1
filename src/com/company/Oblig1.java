@@ -19,6 +19,8 @@ public class Oblig1 {
          int a[] = {3,1,2};
         int a[] = {3, 2, 1};
 
+        int a[] = {5, 2, 2, 2, 2, 2};
+        System.out.println(antallUlikeSortert(a));
 
         System.out.println(ombyttinger(a));
         System.out.println(maks(a));
@@ -83,7 +85,24 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
-        throw new UnsupportedOperationException();
+        if (a.length == 0) {
+            return 0;
+        }
+        int count = 1;
+        int begin = 0;
+        int end = a.length - 1;
+        for (int i = begin; i < end; i++) {
+            if (a[i] < a[i + 1]) {
+                count++;
+            }
+            else if (a[i] == a[i + 1]){
+                //Ingen forandring hvis lik.
+            }
+            else {
+                throw new IllegalStateException("Arrayet er ikke sortert");
+            }
+        }
+        return count;
     }
 
     ///// Oppgave 3 //////////////////////////////////////
