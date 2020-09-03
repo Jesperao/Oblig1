@@ -4,17 +4,33 @@ package com.company;
 
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
+        /*int a[] = {2, 4, 6, 10, 8};
 
-        int a[] = {1,3,2,1,31,2,5};
-        int a[] = {0};
+        int a[] = {1, 2, 3};
+        int a[] = {1, 3, 2};
+        int a[] = {2, 1, 3};
+        int a[] = {2, 3, 1};
+        int a[] = {3, 1, 2};
+        int a[] = {3, 2, 1};
 
-        System.out.println(maks(a));
-        System.out.println(antallUlikeUsortert(a));
+        int a[] = {5, 2, 2, 2, 2, 2};
+
+         */
+        //System.out.println(antallUlikeSortert(a));
+
+        //System.out.println(ombyttinger(a));
+        //int a[] = {1, 3, 2, 1, 31, 2, 5};
+       // int a[] = {0};
+
+        //System.out.println(maks(a));
+        //System.out.println(antallUlikeUsortert(a));
 
         String a = flett("ABC", "DEFGH");
         String b = flett("IJKLMN", "OPQ");
@@ -47,6 +63,18 @@ public class Oblig1 {
     }
 
 
+    //Når blir det flest ombyttinger?
+    // - Når det største tallet står først blir det flest ombyttinger
+    // Når blir det færrest?
+    //  - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
+    //Hvor mange blir det i gjennomsnitt?
+    //  -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
+
+    //  Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
+    //  de maks-metodene vi har sett på tidligere?
+
+
+
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
         throw new UnsupportedOperationException();
@@ -77,7 +105,23 @@ public class Oblig1 {
 
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
-        throw new UnsupportedOperationException();
+        int venstre = 0;
+        int hoyre = a.length - 1;
+        //int teller = 0;
+        while (venstre < hoyre) {
+            while (a[venstre] % 2 != 0) {
+                venstre++;
+                //    teller++;
+            }
+            while (a[hoyre] % 2 == 0 && venstre < hoyre) {
+                hoyre--;
+            }
+            if (venstre < hoyre) {
+                int temp = a[venstre];
+                a[venstre] = a[hoyre];
+                a[hoyre] = temp;
+            }
+        }
     }
 
     ///// Oppgave 5 //////////////////////////////////////
@@ -94,15 +138,15 @@ public class Oblig1 {
     /// 7a)
     public static String flett(String s, String t) {
         String flette = "";
-        int lengdePåString = 0;
+        int lengdePaaArray;
 
         if (s.length() < t.length()) {
-            lengdePåString = t.length();
+            lengdePaaArray = t.length();
         } else {
-            lengdePåString = s.length();
+            lengdePaaArray = s.length();
         }
 
-        for (int i = 0; i < lengdePåString; ++i) {
+        for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flette += s.charAt(i);
             }
