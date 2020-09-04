@@ -16,6 +16,10 @@ public class Oblig1 {
         delsortering(a);
         System.out.println(Arrays.toString(a));
 
+        //int a[] = {5, 2, 2, 2, 2, 2};
+        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        //System.out.println(rotasjon(a));
+        System.out.println(rotasjon(a, -7));
 
     }
 
@@ -180,29 +184,21 @@ public class Oblig1 {
     }
 
     ///// Oppgave 6 //////////////////////////////////////
-    public static char[] rotasjon(char[] a, int k) {
-        if (k > 0) {
-            int n = 0;
-            while (n < k) {
-                for (int i = a.length - 1; i > 0; i--) {
-                    char temp = a[i];
-                    a[i] = a[i - 1];
-                    a[i - 1] = temp;
-                }
-                n++;
+    public static void bytt(char[] a, int i, int j) {
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 
-            }
-        } else if (k <= 0) {
-            int n = 0;
-            while (n > k) {
-                for (int i = 0; i < a.length - 1; i++) {
-                    char temp = a[i];
-                    a[i] = a[i + 1];
-                    a[i + 1] = temp;
-                }
-                n--;
-            }
-        }
+    public static char[] rotasjon(char[] a, int k) {
+        int n = a.length;
+        if (n < 2) return a;
+        if ((k %= n) < 0) k += n;
+
+        for (int v = 0, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = 0, h = k - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = k, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+
         return a;
     }
 
