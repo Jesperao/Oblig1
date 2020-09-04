@@ -12,12 +12,12 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-        int [] a  = {1,3,5,7,7};
-        delsortering(a);
-        System.out.println(Arrays.toString(a));
+     //   int [] a  = {1,3,5,7,7};
+     //   delsortering(a);
+     //   System.out.println(Arrays.toString(a));
 
         //int a[] = {5, 2, 2, 2, 2, 2};
-        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+      char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         //System.out.println(rotasjon(a));
         System.out.println(rotasjon(a, -7));
 
