@@ -13,7 +13,7 @@ public class Oblig1 {
         //int a[] = {5, 2, 2, 2, 2, 2};
         char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         //System.out.println(rotasjon(a));
-        System.out.println(rotasjon(a, 2));
+        System.out.println(rotasjon(a, -7));
     }
 
     private Oblig1() {
