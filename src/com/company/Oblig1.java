@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-        int a[] = {1,5,1,3,1,52,2};
 
         delsortering(a);
         System.out.println(Arrays.toString(a));
@@ -170,15 +169,41 @@ public class Oblig1 {
         sorter(a, tellerOdd, n);
     }
 
-
     ///// Oppgave 5 //////////////////////////////////////
-    public static void rotasjon(char[] a) {
-        throw new UnsupportedOperationException();
+    public static char[] rotasjon(char[] a) {
+        for (int i = a.length - 1; i > 0; i--) {
+            char temp = a[i];
+            a[i] = a[i - 1];
+            a[i - 1] = temp;
+        }
+        return a;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
-    public static void rotasjon(char[] a, int k) {
-        throw new UnsupportedOperationException();
+    public static char[] rotasjon(char[] a, int k) {
+        if (k > 0) {
+            int n = 0;
+            while (n < k) {
+                for (int i = a.length - 1; i > 0; i--) {
+                    char temp = a[i];
+                    a[i] = a[i - 1];
+                    a[i - 1] = temp;
+                }
+                n++;
+
+            }
+        } else if (k <= 0) {
+            int n = 0;
+            while (n > k) {
+                for (int i = 0; i < a.length - 1; i++) {
+                    char temp = a[i];
+                    a[i] = a[i + 1];
+                    a[i + 1] = temp;
+                }
+                n--;
+            }
+        }
+        return a;
     }
 
     ///// Oppgave 7 //////////////////////////////////////
@@ -204,28 +229,28 @@ public class Oblig1 {
         return flette;
     }
 
-    /// 7b)
-    public static String flett(String... s) {
-        throw new UnsupportedOperationException();
-    }
+        /// 7b)
+        public static String flett (String...s){
+            throw new UnsupportedOperationException();
+        }
 
-    ///// Oppgave 8 //////////////////////////////////////
-    public static int[] indekssortering(int[] a) {
-        throw new UnsupportedOperationException();
-    }
+        ///// Oppgave 8 //////////////////////////////////////
+        public static int[] indekssortering ( int[] a){
+            throw new UnsupportedOperationException();
+        }
 
-    ///// Oppgave 9 //////////////////////////////////////
-    public static int[] tredjeMin(int[] a) {
-        throw new UnsupportedOperationException();
-    }
+        ///// Oppgave 9 //////////////////////////////////////
+        public static int[] tredjeMin ( int[] a){
+            throw new UnsupportedOperationException();
+        }
 
-    ///// Oppgave 10 //////////////////////////////////////
-    public static int bokstavNr(char bokstav) {
-        throw new UnsupportedOperationException();
-    }
+        ///// Oppgave 10 //////////////////////////////////////
+        public static int bokstavNr ( char bokstav){
+            throw new UnsupportedOperationException();
+        }
 
-    public static boolean inneholdt(String a, String b) {
-        throw new UnsupportedOperationException();
-    }
+        public static boolean inneholdt (String a, String b){
+            throw new UnsupportedOperationException();
+        }
 
-}  // Oblig1
+    }  // Oblig1
