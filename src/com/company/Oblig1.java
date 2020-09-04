@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-        int a[] = {1,5,1,3,1,5};
+        int a[] = {1,5,1,3,1,52,2};
 
         delsortering(a);
         System.out.println(Arrays.toString(a));
