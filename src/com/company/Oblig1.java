@@ -13,7 +13,7 @@ public class Oblig1 {
         //int a[] = {5, 2, 2, 2, 2, 2};
         char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         //System.out.println(rotasjon(a));
-        System.out.println(rotasjon(a, -3));
+        System.out.println(rotasjon(a, 2));
     }
 
     private Oblig1() {
@@ -97,60 +97,53 @@ public class Oblig1 {
     }
 
     ///// Oppgave 6 //////////////////////////////////////
-    public static char[] rotasjon(char[] a, int k) {
-        if (k > 0) {
-            int n = 0;
-            while (n < k) {
-                for (int i = a.length - 1; i > 0; i--) {
-                    char temp = a[i];
-                    a[i] = a[i - 1];
-                    a[i - 1] = temp;
-                }
-                n++;
+    public static void bytt(char[] a, int i, int j) {
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 
-            }
-        } else if (k <= 0) {
-            int n = 0;
-            while (n > k) {
-                for (int i = 0; i < a.length - 1; i++) {
-                    char temp = a[i];
-                    a[i] = a[i + 1];
-                    a[i + 1] = temp;
-                }
-                n--;
-            }
-        }
+    public static char[] rotasjon(char[] a, int k) {
+        int n = a.length;
+        if (n < 2) return a;
+        if ((k %= n) < 0) k += n;
+
+        for (int v = 0, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = 0, h = k - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = k, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+
         return a;
     }
 
-        ///// Oppgave 7 //////////////////////////////////////
-        /// 7a)
-        public static String flett (String s, String t){
-            throw new UnsupportedOperationException();
-        }
 
-        /// 7b)
-        public static String flett (String...s){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 7 //////////////////////////////////////
+    /// 7a)
+    public static String flett(String s, String t) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 8 //////////////////////////////////////
-        public static int[] indekssortering ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    /// 7b)
+    public static String flett(String... s) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 9 //////////////////////////////////////
-        public static int[] tredjeMin ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 8 //////////////////////////////////////
+    public static int[] indekssortering(int[] a) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 10 //////////////////////////////////////
-        public static int bokstavNr ( char bokstav){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 9 //////////////////////////////////////
+    public static int[] tredjeMin(int[] a) {
+        throw new UnsupportedOperationException();
+    }
 
-        public static boolean inneholdt (String a, String b){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 10 //////////////////////////////////////
+    public static int bokstavNr(char bokstav) {
+        throw new UnsupportedOperationException();
+    }
 
-    }  // Oblig1
+    public static boolean inneholdt(String a, String b) {
+        throw new UnsupportedOperationException();
+    }
+
+}  // Oblig1
