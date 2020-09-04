@@ -12,14 +12,14 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-     //   int [] a  = {1,3,5,7,7};
-     //   delsortering(a);
-     //   System.out.println(Arrays.toString(a));
+        int [] a  = {1,3,5,7,7,1,1,-3,-3};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
 
         //int a[] = {5, 2, 2, 2, 2, 2};
-      char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+     // char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         //System.out.println(rotasjon(a));
-        System.out.println(rotasjon(a, -7));
+      //  System.out.println(rotasjon(a, 1));
 
     }
 
@@ -154,7 +154,7 @@ public class Oblig1 {
         int tellerPar = 0;
 
         while (venstre < hoyre) {
-            while (a[venstre] % 2 != 0) {
+            while (a[venstre] % 2 != 0 && venstre < hoyre) {
                 venstre++;
                 tellerOdd++;
             }
@@ -167,9 +167,10 @@ public class Oblig1 {
                 a[venstre] = a[hoyre];
                 a[hoyre] = temp;
             }
+        }if(tellerPar == 0){
+            sorter(a,0,n);
         }
-
-        sorter(a, 0, tellerOdd - 1);
+        sorter(a, 0, tellerOdd-1);
         sorter(a, tellerOdd, n);
     }
 
