@@ -4,24 +4,20 @@ package com.company;
 
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.NoSuchElementException;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-        int a[] = {2,4,6,10,8};
+        int a[] = {1,5,1,3,1,5};
 
-        int a[] = {1,3,2,1,31,2,5};
-        int a[] = {0};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
 
-        System.out.println(maks(a));
-        System.out.println(antallUlikeUsortert(a));
 
-        String a = flett("ABC", "DEFGH");
-        String b = flett("IJKLMN", "OPQ");
-        String c = flett("", "AB");
-
-        System.out.println(a + " " + b + " " + c);
     }
 
     private Oblig1() {
@@ -84,11 +80,9 @@ public class Oblig1 {
         for (int i = begin; i < end; i++) {
             if (a[i] < a[i + 1]) {
                 count++;
-            }
-            else if (a[i] == a[i + 1]){
+            } else if (a[i] == a[i + 1]) {
                 //Ingen forandring hvis lik.
-            }
-            else {
+            } else {
                 throw new IllegalStateException("Arrayet er ikke sortert");
             }
         }
@@ -119,25 +113,63 @@ public class Oblig1 {
     }
 
     ///// Oppgave 4 //////////////////////////////////////
+
+    // Lager en sortering type quicksort for å sortere arrayet
+    static void sorter(int[] a, int start, int slutt) {
+        if (start < slutt) {
+            int pivot_indeks = partisjon(a, start, slutt);
+            sorter(a, start, pivot_indeks - 1);
+            sorter(a, pivot_indeks + 1, slutt);
+        }
+    }
+
+    static int partisjon(int[] a, int start, int slutt) {
+        int pivot = a[slutt];
+        int pivot_indeks = start;
+        for (int i = start; i < slutt; ++i) {
+            if (a[i] <= pivot) {
+                bytt(a, i, pivot_indeks);
+                pivot_indeks++;
+            }
+        }
+        bytt(a, pivot_indeks, slutt);
+        return pivot_indeks;
+    }
+
+    static void bytt(int[] a, int x, int y) {
+        int temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
+    }
+
+
     public static void delsortering(int[] a) {
         int venstre = 0;
-        int hoyre = a.length-1;
-        //int teller = 0;
-        while(venstre < hoyre){
-            while(a[venstre] % 2 != 0){
-            venstre++;
-        //    teller++;
+        int n = a.length - 1;
+        int hoyre = n;
+        int tellerOdd = 0;
+        int tellerPar = 0;
+
+        while (venstre < hoyre) {
+            while (a[venstre] % 2 != 0) {
+                venstre++;
+                tellerOdd++;
             }
-            while(a[hoyre] % 2 == 0 && venstre < hoyre){
+            while (a[hoyre] % 2 == 0 && venstre < hoyre) {
                 hoyre--;
+                tellerPar++;
             }
-            if(venstre < hoyre ){
+            if (venstre < hoyre) {
                 int temp = a[venstre];
                 a[venstre] = a[hoyre];
                 a[hoyre] = temp;
             }
         }
+
+        sorter(a, 0, tellerOdd - 1);
+        sorter(a, tellerOdd, n);
     }
+
 
     ///// Oppgave 5 //////////////////////////////////////
     public static void rotasjon(char[] a) {
