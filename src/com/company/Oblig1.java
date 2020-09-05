@@ -12,14 +12,9 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
-     //   int [] a  = {1,3,5,7,7};
-     //   delsortering(a);
-     //   System.out.println(Arrays.toString(a));
+        int [] a  = {1,3,5,7,7,6,2,5,9};
 
-        //int a[] = {5, 2, 2, 2, 2, 2};
-      char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        //System.out.println(rotasjon(a));
-        System.out.println(rotasjon(a, -7));
+
 
     }
 
@@ -167,10 +162,11 @@ public class Oblig1 {
                 a[venstre] = a[hoyre];
                 a[hoyre] = temp;
             }
-        }if(tellerPar == 0){
-            sorter(a,0,n);
         }
-        sorter(a, 0, tellerOdd-1);
+        if (tellerPar == 0) {
+            sorter(a, 0, n);
+        }
+        sorter(a, 0, tellerOdd - 1);
         sorter(a, tellerOdd, n);
     }
 
@@ -226,28 +222,75 @@ public class Oblig1 {
         return flette;
     }
 
-        /// 7b)
-        public static String flett (String...s){
-            throw new UnsupportedOperationException();
-        }
+    /// 7b)
+    public static String flett(String... s) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 8 //////////////////////////////////////
-        public static int[] indekssortering ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 8 //////////////////////////////////////
+    public static int[] indekssortering(int[] a) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 9 //////////////////////////////////////
-        public static int[] tredjeMin ( int[] a){
-            throw new UnsupportedOperationException();
+    ///// Oppgave 9 //////////////////////////////////////
+    public static int[] tredjeMin(int[] a) {
+        int n = a.length;
+        if (n < 3) {
+            throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
+        int m = 0;
+        int nm = 1;
+        int tm = 2;
 
-        ///// Oppgave 10 //////////////////////////////////////
-        public static int bokstavNr ( char bokstav){
-            throw new UnsupportedOperationException();
+        /*if (a[2] < a[1]) {
+            if (a[1] < a[0]) {
+                nm = 0;
+                m = 1;
+            }
+            tm = 1;
+            nm = 2;
+        }*/
+
+
+        int minstverdi = a[m];
+        int nestminstverdi = a[nm];
+        int tredjminstverdi = a[tm];
+
+        for (int i = 3; i < n; i++) {
+            if (a[i] < tredjminstverdi) {
+                if (a[i] < nestminstverdi) {
+                    if (a[i] < minstverdi) {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
+
+                        nm = m;
+                        nestminstverdi = minstverdi;
+
+                        m = i;
+                        minstverdi = a[m];
+                    }
+                    tm = nm;
+                    tredjminstverdi = nestminstverdi;
+
+                    nm = i;
+                    nestminstverdi =a[nm];
+                }
+                else {
+                    tm = i;
+                    tredjminstverdi = a[tm];
+                }
+            }
         }
+        return new int[] {m, nm, tm};
+    }
 
-        public static boolean inneholdt (String a, String b){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 10 //////////////////////////////////////
+    public static int bokstavNr(char bokstav) {
+        throw new UnsupportedOperationException();
+    }
 
-    }  // Oblig1
+    public static boolean inneholdt(String a, String b) {
+        throw new UnsupportedOperationException();
+    }
+
+}  // Oblig1
