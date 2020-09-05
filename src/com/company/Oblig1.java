@@ -11,15 +11,10 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
     public static void main(String[] args) {
-        System.out.println("Jalla");
-        int [] a  = {1,3,5,7,7,1,1,-3,-3};
-        delsortering(a);
-        System.out.println(Arrays.toString(a));
+        int  a [] = {1,2,3,1,2,4};
 
-        //int a[] = {5, 2, 2, 2, 2, 2};
-     // char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        //System.out.println(rotasjon(a));
-      //  System.out.println(rotasjon(a, 1));
+        System.out.println( a);
+
 
     }
 
@@ -167,10 +162,11 @@ public class Oblig1 {
                 a[venstre] = a[hoyre];
                 a[hoyre] = temp;
             }
-        }if(tellerPar == 0){
-            sorter(a,0,n);
         }
-        sorter(a, 0, tellerOdd-1);
+        if (tellerPar == 0) {
+            sorter(a, 0, n);
+        }
+        sorter(a, 0, tellerOdd - 1);
         sorter(a, tellerOdd, n);
     }
 
@@ -226,28 +222,30 @@ public class Oblig1 {
         return flette;
     }
 
-        /// 7b)
-        public static String flett (String...s){
-            throw new UnsupportedOperationException();
-        }
+    /// 7b)
+    public static String flett(String... s) {
+        throw new UnsupportedOperationException();
+    }
 
-        ///// Oppgave 8 //////////////////////////////////////
-        public static int[] indekssortering ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 8 //////////////////////////////////////
 
-        ///// Oppgave 9 //////////////////////////////////////
-        public static int[] tredjeMin ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    public static int[] indekssortering(int[] a) {
 
-        ///// Oppgave 10 //////////////////////////////////////
-        public static int bokstavNr ( char bokstav){
-            throw new UnsupportedOperationException();
-        }
+        throw new UnsupportedOperationException();
+    }
 
-        public static boolean inneholdt (String a, String b){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 9 //////////////////////////////////////
+    public static int[] tredjeMin(int[] a) {
+        throw new UnsupportedOperationException();
+    }
 
-    }  // Oblig1
+    ///// Oppgave 10 //////////////////////////////////////
+    public static int bokstavNr(char bokstav) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static boolean inneholdt(String a, String b) {
+        throw new UnsupportedOperationException();
+    }
+
+}  // Oblig1
