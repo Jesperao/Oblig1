@@ -2,7 +2,7 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
-
+import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,11 +12,9 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
     public static void main(String[] args) {
-       char a[] = {'a','2','3'};
-        bytt(a,0,1);
-        System.out.println(a);
-
-
+        System.out.println("Jalla");
+        int [] a  = {1,3,5,7,7,6,2,5,9};
+        System.out.println(tredjeMin(a));
     }
 
     private Oblig1() {
@@ -200,8 +198,6 @@ public class Oblig1 {
         return a;
     }
 
-
-
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
@@ -281,10 +277,50 @@ public class Oblig1 {
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
+        int n = a.length;
+        if (n < 3) {
+            throw new NoSuchElementException("Arrayet har ikke 3 elementer");
+        }
+
+
         int b[] = a;
-        sorter(b, 0, b.length-1);
+        sorter(b, 0, 2);
         indekssortering(b);
-        return b;
+
+        int m = b[0];
+        int nm = b[1];
+        int tm = b[2];
+
+        int minstverdi = b[m];
+        int nestminstverdi = b[nm];
+        int tredjminstverdi = b[tm];
+
+        for (int i = 3; i < n; i++) {
+            if (a[i] < tredjminstverdi) {
+                if (a[i] < nestminstverdi) {
+                    if (a[i] < minstverdi) {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
+
+                        nm = m;
+                        nestminstverdi = minstverdi;
+
+                        m = i;
+                        minstverdi = a[m];
+                    }
+                    tm = nm;
+                    tredjminstverdi = nestminstverdi;
+
+                    nm = i;
+                    nestminstverdi =a[nm];
+                }
+                else {
+                    tm = i;
+                    tredjminstverdi = a[tm];
+                }
+            }
+        }
+        return new int[] {m, nm, tm};
     }
 
     ///// Oppgave 10 //////////////////////////////////////
