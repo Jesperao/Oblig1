@@ -2,21 +2,20 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
-import javax.swing.text.Element;
+
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.*;
+
 
 
 public class Oblig1 {
     public static void main(String[] args) {
-        int a[] = {1, 3, 51, 7, 9, 11, 2, 13, 15, 78, 90, 98};
+       char a[] = {'a','2','3'};
+        bytt(a,0,1);
+        System.out.println(a);
 
-        System.out.println(Arrays.toString(a));
-
-        System.out.println(Arrays.toString(tredjeMin(a)));
 
     }
 
