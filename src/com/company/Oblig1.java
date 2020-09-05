@@ -2,6 +2,7 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
+import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,44 +11,21 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
     public static void main(String[] args) {
-        System.out.println("Jalla");
-/*
-        int a[] = {1, 2, 3};
-        int a[] = {1, 3, 2};
-        int a[] = {2, 1, 3};
-        int a[] = {2, 3, 1};
-        int a[] = {3, 1, 2};
-        int a[] = {3, 2, 1};
+        int a[] = {1, 3, 51, 7, 9, 11, 2, 13, 15, 78, 90, 98};
 
-        int a[] = {5, 2, 2, 2, 2, 2};
+        System.out.println(Arrays.toString(a));
 
- */
+        System.out.println(Arrays.toString(indekssortering(a)));
 
-
-        //System.out.println(antallUlikeSortert(a));
-
-        //System.out.println(ombyttinger(a));
-        //int a[] = {1, 3, 2, 1, 31, 2, 5};
-       // int a[] = {0};
-
-        //System.out.println(maks(a));
-        //System.out.println(antallUlikeUsortert(a));
-
-        String a = flett("ABC", "DEFGH");
-        String b = flett("IJKLMN", "OPQ");
-        String c = flett("", "AB");
-
-        System.out.println(a + " " + b + " " + c);
     }
 
     private Oblig1() {
     }
 
     ///// Oppgave 1 //////////////////////////////////////
-
     public static int maks(int[] a) {
         if (a.length == 0) {
-            throw new UnsupportedOperationException("Arrayet er heelt tomt");
+            throw new NoSuchElementException("Arrayet er heelt tomt");
         }
         for (int i = 0; i < a.length - 1; ++i) {
             if (a[i] > a[i + 1]) {
@@ -60,22 +38,44 @@ public class Oblig1 {
     }
 
     public static int ombyttinger(int[] a) {
-        throw new UnsupportedOperationException();
+        if (a.length == 0) {
+            throw new NoSuchElementException("Arrayet er fortsatt heelt tomt");
+        }
+        int count = 0;
+        for (int j = 0; j < a.length - 1; ++j) {
+            if (a[j] > a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+                count++;
+            }
+        }
+        return count;
     }
 
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<<< Temporary merge branch 1
+    /*
+    Når blir det flest ombyttinger?
+     - Når det største tallet står først blir det flest ombyttinger
+    Når blir det færrest?
+     - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
+     Hvor mange blir det i gjennomsnitt?
+      -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
 
-    //Når blir det flest ombyttinger?
-    // - Når det største tallet står først blir det flest ombyttinger
-    // Når blir det færrest?
-    //  - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
-    //Hvor mange blir det i gjennomsnitt?
-    //  -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
-
-    //  Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
-    //  de maks-metodene vi har sett på tidligere?
+      Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
+      de maks-metodene vi har sett på tidligere?
+       -
 
 
+     */
+=========
+>>>>>>>>> Temporary merge branch 2
 
+    ///// Oppgave 2 //////////////////////////////////////
+    public static int antallUlikeSortert(int[] a) {
+        throw new UnsupportedOperationException();
+=========
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
         if (a.length == 0) {
@@ -94,6 +94,7 @@ public class Oblig1 {
             }
         }
         return count;
+>>>>>>>>> Temporary merge branch 2
     }
 
     ///// Oppgave 3 //////////////////////////////////////
@@ -120,17 +121,51 @@ public class Oblig1 {
     }
 
     ///// Oppgave 4 //////////////////////////////////////
+
+    // Lager en sortering type quicksort for å sortere arrayet
+    static void sorter(int[] a, int start, int slutt) {
+        if (start < slutt) {
+            int pivot_indeks = partisjon(a, start, slutt);
+            sorter(a, start, pivot_indeks - 1);
+            sorter(a, pivot_indeks + 1, slutt);
+        }
+    }
+
+    static int partisjon(int[] a, int start, int slutt) {
+        int pivot = a[slutt];
+        int pivot_indeks = start;
+        for (int i = start; i < slutt; ++i) {
+            if (a[i] <= pivot) {
+                bytt(a, i, pivot_indeks);
+                pivot_indeks++;
+            }
+        }
+        bytt(a, pivot_indeks, slutt);
+        return pivot_indeks;
+    }
+
+    static void bytt(int[] a, int x, int y) {
+        int temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
+    }
+
+
     public static void delsortering(int[] a) {
         int venstre = 0;
-        int hoyre = a.length - 1;
-        //int teller = 0;
+        int n = a.length - 1;
+        int hoyre = n;
+        int tellerOdd = 0;
+        int tellerPar = 0;
+
         while (venstre < hoyre) {
-            while (a[venstre] % 2 != 0) {
+            while (a[venstre] % 2 != 0 && venstre < hoyre) {
                 venstre++;
-                //    teller++;
+                tellerOdd++;
             }
             while (a[hoyre] % 2 == 0 && venstre < hoyre) {
                 hoyre--;
+                tellerPar++;
             }
             if (venstre < hoyre) {
                 int temp = a[venstre];
@@ -138,6 +173,11 @@ public class Oblig1 {
                 a[hoyre] = temp;
             }
         }
+        if (tellerPar == 0) {
+            sorter(a, 0, n);
+        }
+        sorter(a, 0, tellerOdd - 1);
+        sorter(a, tellerOdd, n);
     }
 
     ///// Oppgave 5 //////////////////////////////////////
@@ -151,16 +191,23 @@ public class Oblig1 {
     }
 
     ///// Oppgave 6 //////////////////////////////////////
+    public static void bytt(char[] a, int i, int j) {
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
     public static char[] rotasjon(char[] a, int k) {
-        if (k > 0) {
-            int n = 0;
-            while (n < k) {
-                for (int i = a.length - 1; i > 0; i--) {
-                    char temp = a[i];
-                    a[i] = a[i - 1];
-                    a[i - 1] = temp;
-                }
-                n++;
+        int n = a.length;
+        if (n < 2) return a;
+        if ((k %= n) < 0) k += n;
+
+        for (int v = 0, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = 0, h = k - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = k, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+
+        return a;
+    }
 
             }
         } else if (k <= 0) {
@@ -223,23 +270,49 @@ public class Oblig1 {
             return flette;
         }
 
-        ///// Oppgave 8 //////////////////////////////////////
-        public static int[] indekssortering ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+    ///// Oppgave 8 //////////////////////////////////////
+    public static int[] indekssortering(int[] a) {
+        int arrayMedLengdeSomA[] = new int[a.length];
 
-        ///// Oppgave 9 //////////////////////////////////////
-        public static int[] tredjeMin ( int[] a){
-            throw new UnsupportedOperationException();
-        }
+        int kopiAvA[] = Arrays.copyOf(a, a.length);
 
-        ///// Oppgave 10 //////////////////////////////////////
-        public static int bokstavNr ( char bokstav){
-            throw new UnsupportedOperationException();
+        for (int i = 0; i < kopiAvA.length; ++i) {
+            for (int j = 0; j < kopiAvA.length - 1; ++j) {
+                if (kopiAvA[j] > kopiAvA[j + 1]) {
+                    int temp = kopiAvA[j];
+                    kopiAvA[j] = kopiAvA[j + 1];
+                    kopiAvA[j + 1] = temp;
+                }
+            }
         }
+        int i = 0;
+        while (i < kopiAvA.length) {
+            for (int j = 0; j < kopiAvA.length; ++j) {
+                if (kopiAvA[i] == a[j]) {
+                    arrayMedLengdeSomA[i] = j;
+                    i++;
+                    if (i == kopiAvA.length) {
+                        break;
+                    }
+                }
+            }
+        }
+        return arrayMedLengdeSomA;
+    }
 
-        public static boolean inneholdt (String a, String b){
-            throw new UnsupportedOperationException();
-        }
+
+    ///// Oppgave 9 //////////////////////////////////////
+    public static int[] tredjeMin(int[] a) {
+        throw new UnsupportedOperationException();
+    }
+
+    ///// Oppgave 10 //////////////////////////////////////
+    public static int bokstavNr(char bokstav) {
+        throw new UnsupportedOperationException();
+    }
+
+    public static boolean inneholdt(String a, String b) {
+        throw new UnsupportedOperationException();
+    }
 
     }  // Oblig1
