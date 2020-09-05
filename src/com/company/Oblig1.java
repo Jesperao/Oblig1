@@ -13,7 +13,7 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        System.out.println(Arrays.toString(indekssortering(a)));
+        System.out.println(Arrays.toString(tredjeMin(a)));
 
     }
 
@@ -247,7 +247,7 @@ public class Oblig1 {
                 if (kopiAvA[i] == a[j]) {
                     arrayMedLengdeSomA[i] = j;
                     i++;
-                    if (i == kopiAvA.length) {  
+                    if (i == kopiAvA.length) {
                         break;
                     }
                 }
@@ -259,7 +259,10 @@ public class Oblig1 {
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
-        throw new UnsupportedOperationException();
+        int b[] = a;
+        sorter(b, 0, b.length-1);
+        indekssortering(b);
+        return b;
     }
 
     ///// Oppgave 10 //////////////////////////////////////
