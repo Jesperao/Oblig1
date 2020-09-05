@@ -2,19 +2,18 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
+import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
-        int  a [] = {1,2,3,1,2,4};
+        int a[] = {1, 3, 51, 7, 9, 11, 2, 13, 15, 78, 90, 98};
 
-        System.out.println( a);
+        System.out.println(Arrays.toString(a));
 
+        System.out.println(Arrays.toString(indekssortering(a)));
 
     }
 
@@ -229,8 +228,34 @@ public class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        throw new UnsupportedOperationException();
+        int arrayMedLengdeSomA[] = new int[a.length];
+
+        int kopiAvA[] = Arrays.copyOf(a, a.length);
+
+        for (int i = 0; i < kopiAvA.length; ++i) {
+            for (int j = 0; j < kopiAvA.length - 1; ++j) {
+                if (kopiAvA[j] > kopiAvA[j + 1]) {
+                    int temp = kopiAvA[j];
+                    kopiAvA[j] = kopiAvA[j + 1];
+                    kopiAvA[j + 1] = temp;
+                }
+            }
+        }
+        int i = 0;
+        while (i < kopiAvA.length) {
+            for (int j = 0; j < kopiAvA.length; ++j) {
+                if (kopiAvA[i] == a[j]) {
+                    arrayMedLengdeSomA[i] = j;
+                    i++;
+                    if (i == kopiAvA.length) {  
+                        break;
+                    }
+                }
+            }
+        }
+        return arrayMedLengdeSomA;
     }
+
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
