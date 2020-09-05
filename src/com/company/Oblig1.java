@@ -4,6 +4,9 @@ package com.company;
 
 import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.*;
 
 
@@ -198,19 +201,21 @@ public class Oblig1 {
         return a;
     }
 
+
+
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
         String flette = "";
-        int lengdePåString = 0;
+        int lengdePaaArray;
 
         if (s.length() < t.length()) {
-            lengdePåString = t.length();
+            lengdePaaArray = t.length();
         } else {
-            lengdePåString = s.length();
+            lengdePaaArray = s.length();
         }
 
-        for (int i = 0; i < lengdePåString; ++i) {
+        for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flette += s.charAt(i);
             }
@@ -221,10 +226,28 @@ public class Oblig1 {
         return flette;
     }
 
-    /// 7b)
-    public static String flett(String... s) {
-        throw new UnsupportedOperationException();
-    }
+        /// 7b)
+        public static String flett (String...s){
+            String flette = "";
+
+            if (s.length!=0){
+                int lengde = s[0].length();
+
+                for (int i = 0; i<s.length-1; i++) {
+                    if (s[i].length()<=s[i+1].length()){
+                        lengde += s[i+1].length();
+                    }
+                }
+                for (int i = 0; i< lengde; ++i) {
+                    for (int j = 0; j<s.length; ++j){
+                        if (s[j].length()>i){
+                            flette += s[j].charAt(i);
+                        }
+                    }
+                }
+            }
+            return flette;
+        }
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
