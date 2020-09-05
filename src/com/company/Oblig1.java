@@ -101,7 +101,7 @@ public class Oblig1 {
         }
 
         if (ulikeTall.size() == 1) {
-            antallUlike = 0;
+            antallUlike = 1;
         } else {
             antallUlike = ulikeTall.size();
         }
@@ -228,9 +228,7 @@ public class Oblig1 {
     }
 
     ///// Oppgave 8 //////////////////////////////////////
-
     public static int[] indekssortering(int[] a) {
-
         throw new UnsupportedOperationException();
     }
 
