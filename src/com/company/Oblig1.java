@@ -11,13 +11,7 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
         int [] a  = {1,3,5,7,7,6,2,5,9};
-        int a[] = {1, 3, 51, 7, 9, 11, 2, 13, 15, 78, 90, 98};
-
-        System.out.println(Arrays.toString(a));
-
-
-        System.out.println(Arrays.toString(tredjeMin(a)));
-
+        System.out.println(tredjeMin(a));
     }
 
     private Oblig1() {
@@ -266,23 +260,19 @@ public class Oblig1 {
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
-        int m = 0;
-        int nm = 1;
-        int tm = 2;
-
-        /*if (a[2] < a[1]) {
-            if (a[1] < a[0]) {
-                nm = 0;
-                m = 1;
-            }
-            tm = 1;
-            nm = 2;
-        }*/
 
 
-        int minstverdi = a[m];
-        int nestminstverdi = a[nm];
-        int tredjminstverdi = a[tm];
+        int b[] = a;
+        sorter(b, 0, 2);
+        indekssortering(b);
+
+        int m = b[0];
+        int nm = b[1];
+        int tm = b[2];
+
+        int minstverdi = b[m];
+        int nestminstverdi = b[nm];
+        int tredjminstverdi = b[tm];
 
         for (int i = 3; i < n; i++) {
             if (a[i] < tredjminstverdi) {
@@ -310,10 +300,6 @@ public class Oblig1 {
             }
         }
         return new int[] {m, nm, tm};
-        int b[] = a;
-        sorter(b, 0, b.length-1);
-        indekssortering(b);
-        return b;
     }
 
     ///// Oppgave 10 //////////////////////////////////////
