@@ -281,22 +281,21 @@ public class Oblig1 {
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
-        int[] indeks = indekssortering(a);
+        int[] indeks = indekssortering(new int[] {a[0], a[1], a[2]});
 
         int m = indeks[0];
         int nm = indeks[1];
         int tm = indeks[2];
 
-        int[] b = indeks;
 
-        int minstverdi = b[m];
-        int nestminstverdi = b[nm];
-        int tredjminstverdi = b[tm];
+        int minstverdi = a[m];
+        int nestminstverdi = a[nm];
+        int tredjminstverdi = a[tm];
 
 
         for (int i = 3; i < n; ++i) {
 
-            int verdi = b[i];
+            int verdi = a[i];
             if (verdi < tredjminstverdi) {
                 if (verdi < nestminstverdi) {
                     if (verdi < minstverdi) {
