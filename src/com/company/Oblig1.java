@@ -11,7 +11,7 @@ public class Oblig1 {
     public static void main(String[] args) {
         System.out.println("Jalla");
         int [] a  = {1,3,5,7,7,6,2,5,9};
-        System.out.println(tredjeMin(a));
+        System.out.println();
     }
 
     private Oblig1() {
@@ -266,9 +266,9 @@ public class Oblig1 {
         sorter(b, 0, 2);
         indekssortering(b);
 
-        int m = b[0];
-        int nm = b[1];
-        int tm = b[2];
+        int m = 0;
+        int nm = 1;
+        int tm = 2;
 
         int minstverdi = b[m];
         int nestminstverdi = b[nm];
