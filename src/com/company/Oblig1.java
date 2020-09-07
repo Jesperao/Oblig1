@@ -12,10 +12,10 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
 
-      String a = "Alla";
-      String b = "kassaAlla";
+        String a = "Alla";
+        String b = "kassaAlla";
 
-        System.out.println(inneholdt(a,b));
+        System.out.println(inneholdt(a, b));
 
     }
 
@@ -92,7 +92,7 @@ public class Oblig1 {
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
         int n = a.length;
-        int antallUlike = 0;
+        int antallUlike;
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
 
@@ -204,7 +204,7 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        String flette = "";
+        StringBuilder flett = new StringBuilder();
         int lengdePaaArray;
 
         if (s.length() < t.length()) {
@@ -215,18 +215,18 @@ public class Oblig1 {
 
         for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
-                flette += s.charAt(i);
+                flett.append(s.charAt(i));
             }
             if (i < t.length()) {
-                flette += t.charAt(i);
+                flett.append(t.charAt(i));
             }
         }
-        return flette;
+        return flett.toString();
     }
 
     /// 7b)
     public static String flett(String... s) {
-        String flette = "";
+        StringBuilder flett = new StringBuilder();
 
         if (s.length != 0) {
             int lengde = s[0].length();
@@ -237,14 +237,14 @@ public class Oblig1 {
                 }
             }
             for (int i = 0; i < lengde; ++i) {
-                for (int j = 0; j < s.length; ++j) {
+                for (int j = 0; j < s.length; j++) {
                     if (s[j].length() > i) {
-                        flette += s[j].charAt(i);
+                        flett.append(s[j].charAt(i));
                     }
                 }
             }
         }
-        return flette;
+        return flett.toString();
     }
 
     ///// Oppgave 8 //////////////////////////////////////
@@ -335,21 +335,32 @@ public class Oblig1 {
 
         char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
-     //   if (a.length() > b.length()) {
-      //      return false;
-       // }
+        //   if (a.length() > b.length()) {
+        //      return false;
+        // }
+
+        // fra kompendiet.. quick sort
+
+
+
+
 
         for (int i = 0; i < aStringen.length; ++i) {
             char tegn = aStringen[i];
 
             int antallIA = 0;
-            for(int j= 0; j < aStringen.length; ++j){if(aStringen[j] == tegn) antallIA++;}
+            for (int j = 0; j < aStringen.length; ++j) {
+                if (aStringen[j] == tegn) antallIA++;
+            }
             int antalliB = 0;
-            for(int k = 0; k < bStringen.length; ++k){if (bStringen[k] == tegn) antalliB++;}
+            for (int k = 0; k < bStringen.length; ++k) {
+                if (bStringen[k] == tegn) antalliB++;
+            }
 
-            if(antallIA > antalliB)return false;
+            if (antallIA > antalliB) return false;
 
-        }return true;
+        }
+        return true;
     }
 
 }  // Oblig1
