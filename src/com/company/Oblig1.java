@@ -4,14 +4,17 @@ package com.company;
 
 import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 
 public class Oblig1 {
     public static void main(String[] args) {
-        System.out.println("Jalla");
-        int [] a  = {1,3,5,7,7,6,2,5,9};
-        System.out.println();
+
+        int[] a = {1, 2, 4, 5, 3, 6};
+        //tredjeMin(a);
+        System.out.println(Arrays.toString(tredjeMin(a)));
     }
 
     private Oblig1() {
@@ -199,15 +202,15 @@ public class Oblig1 {
     /// 7a)
     public static String flett(String s, String t) {
         String flette = "";
-        int lengdePåString = 0;
+        int lengdePaaArray;
 
         if (s.length() < t.length()) {
-            lengdePåString = t.length();
+            lengdePaaArray = t.length();
         } else {
-            lengdePåString = s.length();
+            lengdePaaArray = s.length();
         }
 
-        for (int i = 0; i < lengdePåString; ++i) {
+        for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flette += s.charAt(i);
             }
@@ -220,14 +223,32 @@ public class Oblig1 {
 
     /// 7b)
     public static String flett(String... s) {
-        throw new UnsupportedOperationException();
+        String flette = "";
+
+        if (s.length != 0) {
+            int lengde = s[0].length();
+
+            for (int i = 0; i < s.length - 1; i++) {
+                if (s[i].length() <= s[i + 1].length()) {
+                    lengde += s[i + 1].length();
+                }
+            }
+            for (int i = 0; i < lengde; ++i) {
+                for (int j = 0; j < s.length; ++j) {
+                    if (s[j].length() > i) {
+                        flette += s[j].charAt(i);
+                    }
+                }
+            }
+        }
+        return flette;
     }
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        int arrayMedLengdeSomA[] = new int[a.length];
+        int[] arrayMedLengdeSomA = new int[a.length];
 
-        int kopiAvA[] = Arrays.copyOf(a, a.length);
+        int[] kopiAvA = Arrays.copyOf(a, a.length);
 
         for (int i = 0; i < kopiAvA.length; ++i) {
             for (int j = 0; j < kopiAvA.length - 1; ++j) {
@@ -266,9 +287,9 @@ public class Oblig1 {
         sorter(b, 0, 2);
         indekssortering(b);
 
-        int m = 0;
-        int nm = 1;
-        int tm = 2;
+        int m = b[0];
+        int nm = b[1];
+        int tm = b[2];
 
         int minstverdi = b[m];
         int nestminstverdi = b[nm];
