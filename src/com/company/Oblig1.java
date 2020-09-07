@@ -281,24 +281,24 @@ public class Oblig1 {
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
+        int[] indeks = indekssortering(new int[] {a[0], a[1], a[2]});
+
+        int m = indeks[0];
+        int nm = indeks[1];
+        int tm = indeks[2];
 
 
-        int b[] = a;
-        sorter(b, 0, 2);
-        indekssortering(b);
+        int minstverdi = a[m];
+        int nestminstverdi = a[nm];
+        int tredjminstverdi = a[tm];
 
-        int m = b[0];
-        int nm = b[1];
-        int tm = b[2];
 
-        int minstverdi = b[m];
-        int nestminstverdi = b[nm];
-        int tredjminstverdi = b[tm];
+        for (int i = 3; i < n; ++i) {
 
-        for (int i = 3; i < n; i++) {
-            if (a[i] < tredjminstverdi) {
-                if (a[i] < nestminstverdi) {
-                    if (a[i] < minstverdi) {
+            int verdi = a[i];
+            if (verdi < tredjminstverdi) {
+                if (verdi < nestminstverdi) {
+                    if (verdi < minstverdi) {
                         tm = nm;
                         tredjminstverdi = nestminstverdi;
 
@@ -306,21 +306,21 @@ public class Oblig1 {
                         nestminstverdi = minstverdi;
 
                         m = i;
-                        minstverdi = a[m];
-                    }
-                    tm = nm;
-                    tredjminstverdi = nestminstverdi;
+                        minstverdi = verdi;
+                    } else {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
 
-                    nm = i;
-                    nestminstverdi =a[nm];
-                }
-                else {
+                        nm = i;
+                        nestminstverdi = verdi;
+                    }
+                } else {
                     tm = i;
-                    tredjminstverdi = a[tm];
+                    tredjminstverdi = verdi;
                 }
             }
         }
-        return new int[] {m, nm, tm};
+        return new int[]{m, nm, tm};
     }
 
     ///// Oppgave 10 //////////////////////////////////////
