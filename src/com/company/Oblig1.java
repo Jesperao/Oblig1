@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
-
 public class Oblig1 {
     public static void main(String[] args) {
-        System.out.println("Jalla");
-        int [] a  = {1,3,5,7,7,6,2,5,9};
-        System.out.println(tredjeMin(a));
+
+        int[] a = {1, 2, 4, 5, 3, 6};
+        //tredjeMin(a);
+        System.out.println(Arrays.toString(tredjeMin(a)));
     }
 
     private Oblig1() {
@@ -221,34 +221,34 @@ public class Oblig1 {
         return flette;
     }
 
-        /// 7b)
-        public static String flett (String...s){
-            String flette = "";
+    /// 7b)
+    public static String flett(String... s) {
+        String flette = "";
 
-            if (s.length!=0){
-                int lengde = s[0].length();
+        if (s.length != 0) {
+            int lengde = s[0].length();
 
-                for (int i = 0; i<s.length-1; i++) {
-                    if (s[i].length()<=s[i+1].length()){
-                        lengde += s[i+1].length();
-                    }
+            for (int i = 0; i < s.length - 1; i++) {
+                if (s[i].length() <= s[i + 1].length()) {
+                    lengde += s[i + 1].length();
                 }
-                for (int i = 0; i< lengde; ++i) {
-                    for (int j = 0; j<s.length; ++j){
-                        if (s[j].length()>i){
-                            flette += s[j].charAt(i);
-                        }
+            }
+            for (int i = 0; i < lengde; ++i) {
+                for (int j = 0; j < s.length; ++j) {
+                    if (s[j].length() > i) {
+                        flette += s[j].charAt(i);
                     }
                 }
             }
-            return flette;
         }
+        return flette;
+    }
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        int arrayMedLengdeSomA[] = new int[a.length];
+        int[] arrayMedLengdeSomA = new int[a.length];
 
-        int kopiAvA[] = Arrays.copyOf(a, a.length);
+        int[] kopiAvA = Arrays.copyOf(a, a.length);
 
         for (int i = 0; i < kopiAvA.length; ++i) {
             for (int j = 0; j < kopiAvA.length - 1; ++j) {
@@ -281,24 +281,25 @@ public class Oblig1 {
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
+        int[] indeks = indekssortering(a);
 
+        int m = indeks[0];
+        int nm = indeks[1];
+        int tm = indeks[2];
 
-        int b[] = a;
-        sorter(b, 0, 2);
-        indekssortering(b);
-
-        int m = b[0];
-        int nm = b[1];
-        int tm = b[2];
+        int[] b = indeks;
 
         int minstverdi = b[m];
         int nestminstverdi = b[nm];
         int tredjminstverdi = b[tm];
 
-        for (int i = 3; i < n; i++) {
-            if (a[i] < tredjminstverdi) {
-                if (a[i] < nestminstverdi) {
-                    if (a[i] < minstverdi) {
+
+        for (int i = 3; i < n; ++i) {
+
+            int verdi = b[i];
+            if (verdi < tredjminstverdi) {
+                if (verdi < nestminstverdi) {
+                    if (verdi < minstverdi) {
                         tm = nm;
                         tredjminstverdi = nestminstverdi;
 
@@ -306,21 +307,21 @@ public class Oblig1 {
                         nestminstverdi = minstverdi;
 
                         m = i;
-                        minstverdi = a[m];
-                    }
-                    tm = nm;
-                    tredjminstverdi = nestminstverdi;
+                        minstverdi = verdi;
+                    } else {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
 
-                    nm = i;
-                    nestminstverdi =a[nm];
-                }
-                else {
+                        nm = i;
+                        nestminstverdi = verdi;
+                    }
+                } else {
                     tm = i;
-                    tredjminstverdi = a[tm];
+                    tredjminstverdi = verdi;
                 }
             }
         }
-        return new int[] {m, nm, tm};
+        return new int[]{m, nm, tm};
     }
 
     ///// Oppgave 10 //////////////////////////////////////
