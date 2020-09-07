@@ -11,9 +11,11 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
     public static void main(String[] args) {
-        int a[] = {1, 3, 51, 7, 9, 11, 2, 13, 15, 78, 90, 98};
 
-        System.out.println(Arrays.toString(a));
+      String a = "Alla";
+      String b = "kassaAlla";
+
+        System.out.println(inneholdt(a,b));
 
     }
 
@@ -51,13 +53,13 @@ public class Oblig1 {
         return count;
     }
 
-
     /*
     Når blir det flest ombyttinger?
-     - Når det største tallet står først blir det flest ombyttinger
+     - Når det største tallet står først blir det flest ombyttinger, siden den da må gå gjennom hele tabellen.
     Når blir det færrest?
      - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
      Hvor mange blir det i gjennomsnitt?
+      - n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.
       -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
 
       Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
@@ -66,7 +68,6 @@ public class Oblig1 {
 
 
      */
-
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
@@ -102,7 +103,7 @@ public class Oblig1 {
         }
 
         if (ulikeTall.size() == 1) {
-            antallUlike = 0;
+            antallUlike = 1;
         } else {
             antallUlike = ulikeTall.size();
         }
@@ -200,21 +201,6 @@ public class Oblig1 {
         return a;
     }
 
-            }
-        } else if (k <= 0) {
-            int n = 0;
-            while (n > k) {
-                for (int i = 0; i < a.length - 1; i++) {
-                    char temp = a[i];
-                    a[i] = a[i + 1];
-                    a[i + 1] = temp;
-                }
-                n--;
-            }
-        }
-        return a;
-    }
-
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
@@ -238,34 +224,34 @@ public class Oblig1 {
         return flette;
     }
 
-        /// 7b)
-        public static String flett (String...s){
-            String flette = "";
+    /// 7b)
+    public static String flett(String... s) {
+        String flette = "";
 
-            if (s.length!=0){
-                int lengde = s[0].length();
+        if (s.length != 0) {
+            int lengde = s[0].length();
 
-                for (int i = 0; i<s.length-1; i++) {
-                    if (s[i].length()<=s[i+1].length()){
-                        lengde += s[i+1].length();
-                    }
+            for (int i = 0; i < s.length - 1; i++) {
+                if (s[i].length() <= s[i + 1].length()) {
+                    lengde += s[i + 1].length();
                 }
-                for (int i = 0; i< lengde; ++i) {
-                    for (int j = 0; j<s.length; ++j){
-                        if (s[j].length()>i){
-                            flette += s[j].charAt(i);
-                        }
+            }
+            for (int i = 0; i < lengde; ++i) {
+                for (int j = 0; j < s.length; ++j) {
+                    if (s[j].length() > i) {
+                        flette += s[j].charAt(i);
                     }
                 }
             }
-            return flette;
         }
+        return flette;
+    }
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        int arrayMedLengdeSomA[] = new int[a.length];
+        int[] arrayMedLengdeSomA = new int[a.length];
 
-        int kopiAvA[] = Arrays.copyOf(a, a.length);
+        int[] kopiAvA = Arrays.copyOf(a, a.length);
 
         for (int i = 0; i < kopiAvA.length; ++i) {
             for (int j = 0; j < kopiAvA.length - 1; ++j) {
@@ -294,7 +280,50 @@ public class Oblig1 {
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
-        throw new UnsupportedOperationException();
+        int n = a.length;
+        if (n < 3) {
+            throw new NoSuchElementException("Arrayet har ikke 3 elementer");
+        }
+        int[] indeks = indekssortering(new int[]{a[0], a[1], a[2]});
+
+        int m = indeks[0];
+        int nm = indeks[1];
+        int tm = indeks[2];
+
+
+        int minstverdi = a[m];
+        int nestminstverdi = a[nm];
+        int tredjminstverdi = a[tm];
+
+
+        for (int i = 3; i < n; ++i) {
+
+            int verdi = a[i];
+            if (verdi < tredjminstverdi) {
+                if (verdi < nestminstverdi) {
+                    if (verdi < minstverdi) {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
+
+                        nm = m;
+                        nestminstverdi = minstverdi;
+
+                        m = i;
+                        minstverdi = verdi;
+                    } else {
+                        tm = nm;
+                        tredjminstverdi = nestminstverdi;
+
+                        nm = i;
+                        nestminstverdi = verdi;
+                    }
+                } else {
+                    tm = i;
+                    tredjminstverdi = verdi;
+                }
+            }
+        }
+        return new int[]{m, nm, tm};
     }
 
     ///// Oppgave 10 //////////////////////////////////////
@@ -303,7 +332,24 @@ public class Oblig1 {
     }
 
     public static boolean inneholdt(String a, String b) {
-        throw new UnsupportedOperationException();
+
+        char[] aStringen = a.toCharArray();
+        char[] bStringen = b.toCharArray();
+     //   if (a.length() > b.length()) {
+      //      return false;
+       // }
+
+        for (int i = 0; i < aStringen.length; ++i) {
+            char tegn = aStringen[i];
+
+            int antallIA = 0;
+            for(int j= 0; j < aStringen.length; ++j){if(aStringen[j] == tegn) antallIA++;}
+            int antalliB = 0;
+            for(int k = 0; k < bStringen.length; ++k){if (bStringen[k] == tegn) antalliB++;}
+
+            if(antallIA > antalliB)return false;
+
+        }return true;
     }
 
-    }  // Oblig1
+}  // Oblig1
