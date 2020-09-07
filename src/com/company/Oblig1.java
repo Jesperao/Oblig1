@@ -15,8 +15,6 @@ public class Oblig1 {
 
         System.out.println(Arrays.toString(a));
 
-        System.out.println(Arrays.toString(indekssortering(a)));
-
     }
 
     private Oblig1() {
@@ -53,8 +51,7 @@ public class Oblig1 {
         return count;
     }
 
-<<<<<<<<< Temporary merge branch 1
-<<<<<<<<< Temporary merge branch 1
+
     /*
     Når blir det flest ombyttinger?
      - Når det største tallet står først blir det flest ombyttinger
@@ -69,13 +66,8 @@ public class Oblig1 {
 
 
      */
-=========
->>>>>>>>> Temporary merge branch 2
 
-    ///// Oppgave 2 //////////////////////////////////////
-    public static int antallUlikeSortert(int[] a) {
-        throw new UnsupportedOperationException();
-=========
+
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
         if (a.length == 0) {
@@ -94,7 +86,6 @@ public class Oblig1 {
             }
         }
         return count;
->>>>>>>>> Temporary merge branch 2
     }
 
     ///// Oppgave 3 //////////////////////////////////////
