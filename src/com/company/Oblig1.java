@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
 
-        int[] a = {1, 2, 4, 5, 3, 6};
+        int[] a = {5, 3, 6, 7, 4, 5, 1, 23, 9, 0};
         //tredjeMin(a);
         System.out.println(Arrays.toString(tredjeMin(a)));
     }
@@ -329,7 +329,21 @@ public class Oblig1 {
     }
 
     public static boolean inneholdt(String a, String b) {
-        throw new UnsupportedOperationException();
+        if (a.length() > b.length()){
+            return false;
+        }
+
+        for (int i = 0; i < a.length(); i++) {
+            char tegn = a[i];
+
+            b = b.clone();
+
+            for (int j = 0; j < b.length(); j++ ) {
+                if (tegn == b[i]) {
+                    break;
+                }
+            }
+        }
     }
 
 }  // Oblig1
