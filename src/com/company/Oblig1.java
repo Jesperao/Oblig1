@@ -192,9 +192,15 @@ public class Oblig1 {
         if (n < 2) return a;
         if ((k %= n) < 0) k += n;
 
-        for (int v = 0, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
-        for (int v = 0, h = k - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
-        for (int v = k, h = n - 1; v < h; Oblig1.bytt(a, v++, h--)) ;
+        for (int v = 0, h = n - 1; v < h;) {
+            Oblig1.bytt(a, v++, h--);
+        }
+        for (int v = 0, h = k - 1; v < h;) {
+            Oblig1.bytt(a, v++, h--);
+        }
+        for (int v = k, h = n - 1; v < h;) {
+            Oblig1.bytt(a, v++, h--);
+        }
 
         return a;
     }
