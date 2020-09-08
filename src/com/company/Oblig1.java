@@ -335,10 +335,6 @@ public class Oblig1 {
 
         char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
-     //   if (a.length() > b.length()) {
-      //      return false;
-       // }
-
         for (int i = 0; i < aStringen.length; ++i) {
             char tegn = aStringen[i];
 
