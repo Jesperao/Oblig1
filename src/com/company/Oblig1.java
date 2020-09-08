@@ -2,37 +2,26 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
-import javax.swing.text.Element;
-import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
-public class Oblig1 {
-    public static void main(String[] args) {
-
-       String a = "Alla";
-      String b = "kassaAlla";
-
-      System.out.println(inneholdt(a, b));
-
-    }
-
-    //private Oblig1() {
-    // }
+class Oblig1 {
 
     ///// Oppgave 1 //////////////////////////////////////
     static int maks(int[] a) {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er heelt tomt");
         }
-        for (int i = 0; i < a.length - 1; ++i) {
+        int i = 0;
+        while (i < a.length - 1) {
             if (a[i] > a[i + 1]) {
                 int temp = a[i];
                 a[i] = a[i + 1];
                 a[i + 1] = temp;
             }
+            ++i;
         }
         return a[a.length - 1];
     }
@@ -81,7 +70,7 @@ public class Oblig1 {
             if (a[i] < a[i + 1]) {
                 count++;
             } else if (a[i] == a[i + 1]) {
-                a[i] = a[i+1];
+                a[i] = a[i + 1];
                 //Ingen forandring hvis lik.
             } else {
                 throw new IllegalStateException("Arrayet er ikke sortert");
@@ -92,7 +81,6 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     static int antallUlikeUsortert(int[] a) {
-        int n = a.length;
         int antallUlike;
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
@@ -174,13 +162,13 @@ public class Oblig1 {
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    static char[] rotasjon(char[] a) {
+    // Endretd denne til void, for å unngå warnings
+    static void rotasjon(char[] a) {
         for (int i = a.length - 1; i > 0; i--) {
             char temp = a[i];
             a[i] = a[i - 1];
             a[i - 1] = temp;
         }
-        return a;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
@@ -190,22 +178,21 @@ public class Oblig1 {
         a[j] = temp;
     }
 
-    static char[] rotasjon(char[] a, int k) {
+    static void rotasjon(char[] a, int k) {
         int n = a.length;
-        if (n < 2) return a;
+        if (n < 2) return;
         if ((k %= n) < 0) k += n;
 
-        for (int v = 0, h = n - 1; v < h;) {
+        for (int v = 0, h = n - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
-        for (int v = 0, h = k - 1; v < h;) {
+        for (int v = 0, h = k - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
-        for (int v = k, h = n - 1; v < h;) {
+        for (int v = k, h = n - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
 
-        return a;
     }
 
     ///// Oppgave 7 //////////////////////////////////////
@@ -328,34 +315,31 @@ public class Oblig1 {
     }
 
     ///// Oppgave 10 //////////////////////////////////////
-    static int bokstavNr(char bokstav) {
+    /*static int bokstavNr(char bokstav) {
         throw new UnsupportedOperationException();
     }
+    Ser ikke ut til å trenge dette.
+     */
 
     static boolean inneholdt(String a, String b) {
 
-     /*   char[] aStringen = a.toCharArray();
+        char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
 
-        for (int i = 0; i < aStringen.length; ++i) {
-            char tegn = aStringen[i];
+        int[] aString = new int[256], bString = new int[256];
 
-            int antallIA = 0;
-            for (int j = 0; j < aStringen.length; ++j) {
-                if (aStringen[j] == tegn) antallIA++;
+        for (char c : aStringen) {
+            aString[c]++;
+        }
+        for (char c : bStringen) {
+            bString[c]++;
+        }
+        for (int i = 0; i < 256; ++i) {
+            if (aString[i] > bString[i]) {
+                return false;
             }
-            int antalliB = 0;
-            for (int k = 0; k < bStringen.length; ++k) {
-                if (bStringen[k] == tegn) antalliB++;
-            }
-
-            if (antallIA > antalliB) return false;
-
         }
         return true;
-
-      */
-     return true;
     }
 
 }  // Oblig1
