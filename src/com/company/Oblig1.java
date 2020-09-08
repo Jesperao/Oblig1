@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Oblig1 {
     public static void main(String[] args) {
 
-        int[] a = {5, 3, 6, 7, 4, 5, 1, 23, 9, 0};
+        int[] a = {1, 2, 4, 5, 3, 6};
         //tredjeMin(a);
         System.out.println(Arrays.toString(tredjeMin(a)));
     }
@@ -53,10 +53,11 @@ public class Oblig1 {
 
     /*
     Når blir det flest ombyttinger?
-     - Når det største tallet står først blir det flest ombyttinger
+     - Når det største tallet står først blir det flest ombyttinger, siden den da må gå gjennom hele tabellen.
     Når blir det færrest?
      - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
      Hvor mange blir det i gjennomsnitt?
+      - n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.
       -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
 
       Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
@@ -281,7 +282,7 @@ public class Oblig1 {
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
-        int[] indeks = indekssortering(new int[] {a[0], a[1], a[2]});
+        int[] indeks = indekssortering(new int[]{a[0], a[1], a[2]});
 
         int m = indeks[0];
         int nm = indeks[1];
@@ -329,21 +330,24 @@ public class Oblig1 {
     }
 
     public static boolean inneholdt(String a, String b) {
-        if (a.length() > b.length()){
-            return false;
-        }
 
-        for (int i = 0; i < a.length(); i++) {
-            char tegn = a[i];
+        char[] aStringen = a.toCharArray();
+        char[] bStringen = b.toCharArray();
+     //   if (a.length() > b.length()) {
+      //      return false;
+       // }
 
-            b = b.clone();
+        for (int i = 0; i < aStringen.length; ++i) {
+            char tegn = aStringen[i];
 
-            for (int j = 0; j < b.length(); j++ ) {
-                if (tegn == b[i]) {
-                    break;
-                }
-            }
-        }
+            int antallIA = 0;
+            for(int j= 0; j < aStringen.length; ++j){if(aStringen[j] == tegn) antallIA++;}
+            int antalliB = 0;
+            for(int k = 0; k < bStringen.length; ++k){if (bStringen[k] == tegn) antalliB++;}
+
+            if(antallIA > antalliB)return false;
+
+        }return true;
     }
 
 }  // Oblig1
