@@ -1,3 +1,7 @@
+// Alex Tran s336111
+// Fredrik Vogt s315714
+//Jesper Østervold s341861
+
 package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
@@ -9,25 +13,15 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 
-public class Oblig1 {
-    public static void main(String[] args) {
-
-      String a = "Alla";
-      String b = "kassaAlla";
-
-        System.out.println(inneholdt(a,b));
-
-    }
-
-    private Oblig1() {
-    }
+class Oblig1 {
 
     ///// Oppgave 1 //////////////////////////////////////
-    public static int maks(int[] a) {
+    static int maks(int[] a) {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er heelt tomt");
         }
-        for (int i = 0; i < a.length - 1; ++i) {
+        int i = 0;
+        while (i < a.length - 1) {
             if (a[i] > a[i + 1]) {
                 int temp = a[i];
                 a[i] = a[i + 1];
@@ -37,7 +31,7 @@ public class Oblig1 {
         return a[a.length - 1];
     }
 
-    public static int ombyttinger(int[] a) {
+    static int ombyttinger(int[] a) {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er fortsatt heelt tomt");
         }
@@ -70,7 +64,7 @@ public class Oblig1 {
      */
 
     ///// Oppgave 2 //////////////////////////////////////
-    public static int antallUlikeSortert(int[] a) {
+    static int antallUlikeSortert(int[] a) {
         if (a.length == 0) {
             return 0;
         }
@@ -81,6 +75,7 @@ public class Oblig1 {
             if (a[i] < a[i + 1]) {
                 count++;
             } else if (a[i] == a[i + 1]) {
+                a[i] = a[i + 1];
                 //Ingen forandring hvis lik.
             } else {
                 throw new IllegalStateException("Arrayet er ikke sortert");
@@ -90,15 +85,17 @@ public class Oblig1 {
     }
 
     ///// Oppgave 3 //////////////////////////////////////
-    public static int antallUlikeUsortert(int[] a) {
-        int n = a.length;
+
+    //Brukte arraylist på denne oppgaven for å se om det var et annen
+    //måte å løse denne oppgaven på. Brukte stackoverflow å finne fram til løsning
+    static int antallUlikeUsortert(int[] a) {
         int antallUlike;
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
 
-        for (int i = 0; i < n; i++) {
-            if (!ulikeTall.contains(a[i])) {
-                ulikeTall.add(a[i]);
+        for (int value : a) {
+            if (!ulikeTall.contains(value)) {
+                ulikeTall.add(value);
             }
         }
 
@@ -115,7 +112,7 @@ public class Oblig1 {
     ///// Oppgave 4 //////////////////////////////////////
 
     // Lager en sortering type quicksort for å sortere arrayet
-    static void sorter(int[] a, int start, int slutt) {
+    private static void sorter(int[] a, int start, int slutt) {
         if (start < slutt) {
             int pivot_indeks = partisjon(a, start, slutt);
             sorter(a, start, pivot_indeks - 1);
@@ -123,7 +120,7 @@ public class Oblig1 {
         }
     }
 
-    static int partisjon(int[] a, int start, int slutt) {
+    private static int partisjon(int[] a, int start, int slutt) {
         int pivot = a[slutt];
         int pivot_indeks = start;
         for (int i = start; i < slutt; ++i) {
@@ -136,14 +133,14 @@ public class Oblig1 {
         return pivot_indeks;
     }
 
-    static void bytt(int[] a, int x, int y) {
+    private static void bytt(int[] a, int x, int y) {
         int temp = a[x];
         a[x] = a[y];
         a[y] = temp;
     }
 
 
-    public static void delsortering(int[] a) {
+    static void delsortering(int[] a) {
         int venstre = 0;
         int n = a.length - 1;
         int hoyre = n;
@@ -173,7 +170,8 @@ public class Oblig1 {
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    public static char[] rotasjon(char[] a) {
+    // Endretd denne til void, for å unngå warnings
+    static void rotasjon(char[] a) {
         for (int i = a.length - 1; i > 0; i--) {
             char temp = a[i];
             a[i] = a[i - 1];
@@ -183,15 +181,15 @@ public class Oblig1 {
     }
 
     ///// Oppgave 6 //////////////////////////////////////
-    public static void bytt(char[] a, int i, int j) {
+    private static void bytt(char[] a, int i, int j) {
         char temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
 
-    public static char[] rotasjon(char[] a, int k) {
+    static void rotasjon(char[] a, int k) {
         int n = a.length;
-        if (n < 2) return a;
+        if (n < 2) return;
         if ((k %= n) < 0) k += n;
 
         for (int v = 0, h = n - 1; v < h;) {
@@ -208,17 +206,13 @@ public class Oblig1 {
     }
 
     ///// Oppgave 7 //////////////////////////////////////
+    // Fikk hjelp fra tidligere student som hadde dette faget.
     /// 7a)
-    public static String flett(String s, String t) {
+    static String flett(String s, String t) {
         StringBuilder flett = new StringBuilder();
-        int lengdePaaArray;
+        int lengdePaaArray = Math.max(s.length(), t.length());
 
-        if (s.length() < t.length()) {
-            lengdePaaArray = t.length();
-        } else {
-            lengdePaaArray = s.length();
-        }
-
+         //legger inn verdiene annen hvergang.
         for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flett.append(s.charAt(i));
@@ -231,21 +225,24 @@ public class Oblig1 {
     }
 
     /// 7b)
-    public static String flett(String... s) {
+    static String flett(String... s) {
         StringBuilder flett = new StringBuilder();
 
+//Vi ser om den er tom
         if (s.length != 0) {
             int lengde = s[0].length();
-
+// Finner deretter den lengste verdien
             for (int i = 0; i < s.length - 1; i++) {
                 if (s[i].length() <= s[i + 1].length()) {
                     lengde += s[i + 1].length();
                 }
             }
+
+            //Kjører på med dobbel for-løkke for å legge til verdi fra hver streng
             for (int i = 0; i < lengde; ++i) {
-                for (int j = 0; j < s.length; j++) {
-                    if (s[j].length() > i) {
-                        flett.append(s[j].charAt(i));
+                for (String value : s) {
+                    if (value.length() > i) {
+                        flett.append(value.charAt(i));
                     }
                 }
             }
@@ -254,7 +251,7 @@ public class Oblig1 {
     }
 
     ///// Oppgave 8 //////////////////////////////////////
-    public static int[] indekssortering(int[] a) {
+    static int[] indekssortering(int[] a) {
         int[] arrayMedLengdeSomA = new int[a.length];
 
         int[] kopiAvA = Arrays.copyOf(a, a.length);
@@ -285,7 +282,7 @@ public class Oblig1 {
 
 
     ///// Oppgave 9 //////////////////////////////////////
-    public static int[] tredjeMin(int[] a) {
+    static int[] tredjeMin(int[] a) {
         int n = a.length;
         if (n < 3) {
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
@@ -307,7 +304,7 @@ public class Oblig1 {
             int verdi = a[i];
             if (verdi < tredjminstverdi) {
                 if (verdi < nestminstverdi) {
-                    if (verdi < minstverdi) {
+                     if (verdi < minstverdi) {
                         tm = nm;
                         tredjminstverdi = nestminstverdi;
 
@@ -333,12 +330,15 @@ public class Oblig1 {
     }
 
     ///// Oppgave 10 //////////////////////////////////////
-    public static int bokstavNr(char bokstav) {
+    /*static int bokstavNr(char bokstav) {
         throw new UnsupportedOperationException();
     }
+    Ser ikke ut til å trenge dette.
+     */
 
-    public static boolean inneholdt(String a, String b) {
+    static boolean inneholdt(String a, String b) {
 
+        //vi sorterer over dem ved å lage string som char array.
         char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
      //   if (a.length() > b.length()) {
