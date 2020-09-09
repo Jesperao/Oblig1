@@ -30,16 +30,16 @@ class Oblig1 {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er fortsatt heelt tomt");
         }
-        int count = 0;
+        int teller = 0;
         for (int j = 0; j < a.length - 1; ++j) {
             if (a[j] > a[j + 1]) {
-                int temp = a[j];
+                int midlertidig = a[j];
                 a[j] = a[j + 1];
-                a[j + 1] = temp;
-                count++;
+                a[j + 1] = midlertidig;
+                teller++;
             }
         }
-        return count;
+        return teller;
     }
 
     /*
