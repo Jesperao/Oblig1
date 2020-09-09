@@ -1,3 +1,7 @@
+// Alex Tran s336111
+// Fredrik Vogt s315714
+//Jesper Østervold s341861
+
 package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
@@ -83,6 +87,9 @@ class Oblig1 {
     }
 
     ///// Oppgave 3 //////////////////////////////////////
+
+    //Brukte arraylist på denne oppgaven for å se om det var et annen
+    //måte å løse denne oppgaven på. Brukte stackoverflow å finne fram til løsning
     static int antallUlikeUsortert(int[] a) {
         int antallUlike;
 
@@ -204,11 +211,13 @@ class Oblig1 {
     }
 
     ///// Oppgave 7 //////////////////////////////////////
+    // Fikk hjelp fra tidligere student som hadde dette faget.
     /// 7a)
     static String flett(String s, String t) {
         StringBuilder flett = new StringBuilder();
         int lengdePaaArray = Math.max(s.length(), t.length());
 
+         //legger inn verdiene annen hvergang.
         for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flett.append(s.charAt(i));
@@ -224,14 +233,17 @@ class Oblig1 {
     static String flett(String... s) {
         StringBuilder flett = new StringBuilder();
 
+//Vi ser om den er tom
         if (s.length != 0) {
             int lengde = s[0].length();
-
+// Finner deretter den lengste verdien
             for (int i = 0; i < s.length - 1; i++) {
                 if (s[i].length() <= s[i + 1].length()) {
                     lengde += s[i + 1].length();
                 }
             }
+
+            //Kjører på med dobbel for-løkke for å legge til verdi fra hver streng
             for (int i = 0; i < lengde; ++i) {
                 for (String value : s) {
                     if (value.length() > i) {
@@ -300,7 +312,7 @@ class Oblig1 {
             int verdi = a[i];
             if (verdi < tredjminstverdi) {
                 if (verdi < nestminstverdi) {
-                    if (verdi < minstverdi) {
+                     if (verdi < minstverdi) {
                         tm = nm;
                         tredjminstverdi = nestminstverdi;
 
