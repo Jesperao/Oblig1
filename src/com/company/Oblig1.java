@@ -2,7 +2,6 @@ package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
-import javax.swing.text.Element;
 import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,14 +90,13 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        int n = a.length;
         int antallUlike;
 
         ArrayList<Integer> ulikeTall = new ArrayList<>();
 
-        for (int i = 0; i < n; i++) {
-            if (!ulikeTall.contains(a[i])) {
-                ulikeTall.add(a[i]);
+        for (int j : a) {
+            if (!ulikeTall.contains(j)) {
+                ulikeTall.add(j);
             }
         }
 
@@ -205,13 +203,7 @@ public class Oblig1 {
     /// 7a)
     public static String flett(String s, String t) {
         StringBuilder flett = new StringBuilder();
-        int lengdePaaArray;
-
-        if (s.length() < t.length()) {
-            lengdePaaArray = t.length();
-        } else {
-            lengdePaaArray = s.length();
-        }
+        int lengdePaaArray = Math.max(s.length(), t.length());
 
         for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
@@ -237,9 +229,9 @@ public class Oblig1 {
                 }
             }
             for (int i = 0; i < lengde; ++i) {
-                for (int j = 0; j < s.length; j++) {
-                    if (s[j].length() > i) {
-                        flett.append(s[j].charAt(i));
+                for (String value : s) {
+                    if (value.length() > i) {
+                        flett.append(value.charAt(i));
                     }
                 }
             }
@@ -338,10 +330,6 @@ public class Oblig1 {
         //   if (a.length() > b.length()) {
         //      return false;
         // }
-
-        // fra kompendiet.. quick sort
-
-
 
 
 
