@@ -162,7 +162,7 @@ class Oblig1 {
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    // Endretd denne til void, for å unngå warnings
+    // Endretd denne til å returnere void, for å unngå warnings
     static void rotasjon(char[] a) {
         for (int i = a.length - 1; i > 0; i--) {
             char temp = a[i];
@@ -318,7 +318,7 @@ class Oblig1 {
     /*static int bokstavNr(char bokstav) {
         throw new UnsupportedOperationException();
     }
-    Ser ikke ut til å trenge dette.
+    Ser ikke ut til å trenge dette. Så fjerner for å unngå warnings.
      */
 
     static boolean inneholdt(String a, String b) {
