@@ -15,3 +15,5 @@ I opgpaven har vi hatt følgende arbeidsfordeling:
 * Alex Tran oppgave 3 og 7
 * Jesper Østervold oppgave 2,5,6 og 9
 * Fredrik Vogt oppgave 1, 4,8 og 10
+
+Testprogrammet gir grønt på alle metodene.
