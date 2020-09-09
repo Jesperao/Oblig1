@@ -11,10 +11,13 @@ class Oblig1 {
 
     ///// Oppgave 1 //////////////////////////////////////
     static int maks(int[] a) {
+        // Sjekker om arrayet er tomt
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er heelt tomt");
         }
         int i = 0;
+        // Går gjennom a og kjører så lenge i er kortere enn lengden til a,
+        // Indeksen er en mindre enn a.length så derfor står det a.length - 1
         while (i < a.length - 1) {
             if (a[i] > a[i + 1]) {
                 int temp = a[i];
@@ -48,7 +51,7 @@ class Oblig1 {
     Når blir det færrest?
      - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
      Hvor mange blir det i gjennomsnitt?
-      - n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.
+      - (n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.)
       -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
 
       Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
@@ -138,12 +141,14 @@ class Oblig1 {
         int hoyre = n;
         int tellerOdd = 0;
         int tellerPar = 0;
-
+        // Sjekker om tallet er oddetall, og øker tellerOdd for hvert oddetall som man finner
+        // Sjekker så lenge venstre er kortere enn lengden til a som er definert som n
         while (venstre < hoyre) {
             while (a[venstre] % 2 != 0 && venstre < hoyre) {
                 venstre++;
                 tellerOdd++;
             }
+            // sjekker etter partall og teller med variabelen tellerPar.
             while (a[hoyre] % 2 == 0 && venstre < hoyre) {
                 hoyre--;
                 tellerPar++;
@@ -154,15 +159,18 @@ class Oblig1 {
                 a[hoyre] = temp;
             }
         }
+        // Sorterer med quicksort fra første til n som er lengden på arrayet, hvis det kun er partall
         if (tellerPar == 0) {
             sorter(a, 0, n);
         }
+        // sorterer fra 0 til hvor mange partall det er
         sorter(a, 0, tellerOdd - 1);
+        // sorterer fra antall første oddetall til slutten av arrayet.
         sorter(a, tellerOdd, n);
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    // Endretd denne til å returnere void, for å unngå warnings
+    // Endret denne til å returnere void, for å unngå warnings
     static void rotasjon(char[] a) {
         for (int i = a.length - 1; i > 0; i--) {
             char temp = a[i];
@@ -237,10 +245,11 @@ class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     static int[] indekssortering(int[] a) {
+        // LAger et nytt array som er like langt som arrayet man skal sortere mtp indeksen.
         int[] arrayMedLengdeSomA = new int[a.length];
-
+        // kopierer a slik at man kan sortere uten å endre på a.
         int[] kopiAvA = Arrays.copyOf(a, a.length);
-
+        // Benytter bubblesort for å løpe gjennom arrayet å finne
         for (int i = 0; i < kopiAvA.length; ++i) {
             for (int j = 0; j < kopiAvA.length - 1; ++j) {
                 if (kopiAvA[j] > kopiAvA[j + 1]) {
@@ -251,6 +260,8 @@ class Oblig1 {
             }
         }
         int i = 0;
+        // Flytter over posisjonen til de forskjellige verdiene over til arrayMedLengdeSomA
+        // slik at det returnerer array sorter med indekssorteringen.
         while (i < kopiAvA.length) {
             for (int j = 0; j < kopiAvA.length; ++j) {
                 if (kopiAvA[i] == a[j]) {
@@ -322,18 +333,20 @@ class Oblig1 {
      */
 
     static boolean inneholdt(String a, String b) {
-
+        // "Endrer" String a og b til Char arrays
         char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
-
+        // Lager int array som man sammenligner
         int[] aString = new int[256], bString = new int[256];
-
+        // løper igjennom Astringen og legger det i aString
         for (char c : aStringen) {
             aString[c]++;
         }
+        // løper igjennom bstringen og legger det i bString
         for (char c : bStringen) {
             bString[c]++;
         }
+        // Løper igjennom hele int arrayet og sammenligner aString og bString
         for (int i = 0; i < 256; ++i) {
             if (aString[i] > bString[i]) {
                 return false;
