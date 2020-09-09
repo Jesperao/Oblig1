@@ -64,15 +64,15 @@ class Oblig1 {
     ///// Oppgave 2 //////////////////////////////////////
     static int antallUlikeSortert(int[] a) {
         if (a.length == 0) {
-            return 0;
+            return 0; //Returnerer 0 hvis array er tomt
         }
         int count = 1;
         int begin = 0;
         int end = a.length - 1;
         for (int i = begin; i < end; i++) {
-            if (a[i] < a[i + 1]) {
-                count++;
-            } else if (a[i] == a[i + 1]) {
+            if (a[i] < a[i + 1]) { //Sjekker tallet er mindre enn det til hoyre
+                count++; //Teller opp antall unike tall
+            } else if (a[i] == a[i + 1]) {//Sjekker om tallet er lik det til hoyre
                 a[i] = a[i + 1];
                 //Ingen forandring hvis lik.
             } else {
@@ -172,8 +172,8 @@ class Oblig1 {
     ///// Oppgave 5 //////////////////////////////////////
     // Endret denne til å returnere void, for å unngå warnings
     static void rotasjon(char[] a) {
-        for (int i = a.length - 1; i > 0; i--) {
-            char temp = a[i];
+        for (int i = a.length - 1; i > 0; i--) { //Starter på slutten av array og jobber mot starten
+            char temp = a[i]; //Tar vare på verdien til a[i]
             a[i] = a[i - 1];
             a[i - 1] = temp;
         }
@@ -186,10 +186,16 @@ class Oblig1 {
         a[j] = temp;
     }
 
+    //Hjelp fra programkode 1.3.13 f i kompendiet
+
     static void rotasjon(char[] a, int k) {
         int n = a.length;
-        if (n < 2) return;
-        if ((k %= n) < 0) k += n;
+        if (n < 2) {
+            return; //hvis array har mindre enn 2 tall, return array
+        }
+        if ((k %= n) < 0) {
+            k += n;
+        }
 
         for (int v = 0, h = n - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
@@ -280,9 +286,10 @@ class Oblig1 {
     ///// Oppgave 9 //////////////////////////////////////
     static int[] tredjeMin(int[] a) {
         int n = a.length;
-        if (n < 3) {
+        if (n < 3) { //exception hvis array har mindre enn 3 tall
             throw new NoSuchElementException("Arrayet har ikke 3 elementer");
         }
+        //Setter startverdier ved help av oppg 8
         int[] indeks = indekssortering(new int[]{a[0], a[1], a[2]});
 
         int m = indeks[0];
@@ -290,12 +297,13 @@ class Oblig1 {
         int tm = indeks[2];
 
 
+        //hjelpevariabler
         int minstverdi = a[m];
         int nestminstverdi = a[nm];
         int tredjminstverdi = a[tm];
 
 
-        for (int i = 3; i < n; ++i) {
+        for (int i = 3; i < n; ++i) { //tre første er allerede sortert, starter på position 3
 
             int verdi = a[i];
             if (verdi < tredjminstverdi) {
