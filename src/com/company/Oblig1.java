@@ -1,13 +1,7 @@
-// Alex Tran s336111
-// Fredrik Vogt s315714
-//Jesper Østervold s341861
-
 package com.company;
 
 ////// Løsningsforslag Oblig 1 ////////////////////////
 
-import javax.swing.text.Element;
-import java.lang.UnsupportedOperationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -17,16 +11,20 @@ class Oblig1 {
 
     ///// Oppgave 1 //////////////////////////////////////
     static int maks(int[] a) {
+        // Sjekker om arrayet er tomt
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er heelt tomt");
         }
         int i = 0;
+        // Går gjennom a og kjører så lenge i er kortere enn lengden til a,
+        // Indeksen er en mindre enn a.length så derfor står det a.length - 1
         while (i < a.length - 1) {
             if (a[i] > a[i + 1]) {
                 int temp = a[i];
                 a[i] = a[i + 1];
                 a[i + 1] = temp;
             }
+            ++i;
         }
         return a[a.length - 1];
     }
@@ -35,16 +33,16 @@ class Oblig1 {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er fortsatt heelt tomt");
         }
-        int count = 0;
+        int teller = 0;
         for (int j = 0; j < a.length - 1; ++j) {
             if (a[j] > a[j + 1]) {
-                int temp = a[j];
+                int midlertidig = a[j];
                 a[j] = a[j + 1];
-                a[j + 1] = temp;
-                count++;
+                a[j + 1] = midlertidig;
+                teller++;
             }
         }
-        return count;
+        return teller;
     }
 
     /*
@@ -53,7 +51,7 @@ class Oblig1 {
     Når blir det færrest?
      - Det blir færrest om arrayet er sortert stigende. Da blir det ingen.
      Hvor mange blir det i gjennomsnitt?
-      - n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.
+      - (n-1 ganger siden den sammeligner i linje 35 og det blir den dominerende operasjonen.)
       -  For eksempel med arraylengde 3 så blir gjennomsnittet 7/6
 
       Kan du på grunnlag av dette si om metoden maks er bedre ( eller dårligere ) enn
@@ -85,9 +83,6 @@ class Oblig1 {
     }
 
     ///// Oppgave 3 //////////////////////////////////////
-
-    //Brukte arraylist på denne oppgaven for å se om det var et annen
-    //måte å løse denne oppgaven på. Brukte stackoverflow å finne fram til løsning
     static int antallUlikeUsortert(int[] a) {
         int antallUlike;
 
@@ -146,12 +141,14 @@ class Oblig1 {
         int hoyre = n;
         int tellerOdd = 0;
         int tellerPar = 0;
-
+        // Sjekker om tallet er oddetall, og øker tellerOdd for hvert oddetall som man finner
+        // Sjekker så lenge venstre er kortere enn lengden til a som er definert som n
         while (venstre < hoyre) {
             while (a[venstre] % 2 != 0 && venstre < hoyre) {
                 venstre++;
                 tellerOdd++;
             }
+            // sjekker etter partall og teller med variabelen tellerPar.
             while (a[hoyre] % 2 == 0 && venstre < hoyre) {
                 hoyre--;
                 tellerPar++;
@@ -162,22 +159,24 @@ class Oblig1 {
                 a[hoyre] = temp;
             }
         }
+        // Sorterer med quicksort fra første til n som er lengden på arrayet, hvis det kun er partall
         if (tellerPar == 0) {
             sorter(a, 0, n);
         }
+        // sorterer fra 0 til hvor mange partall det er
         sorter(a, 0, tellerOdd - 1);
+        // sorterer fra antall første oddetall til slutten av arrayet.
         sorter(a, tellerOdd, n);
     }
 
     ///// Oppgave 5 //////////////////////////////////////
-    // Endretd denne til void, for å unngå warnings
+    // Endret denne til å returnere void, for å unngå warnings
     static void rotasjon(char[] a) {
         for (int i = a.length - 1; i > 0; i--) {
             char temp = a[i];
             a[i] = a[i - 1];
             a[i - 1] = temp;
         }
-        return a;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
@@ -192,27 +191,24 @@ class Oblig1 {
         if (n < 2) return;
         if ((k %= n) < 0) k += n;
 
-        for (int v = 0, h = n - 1; v < h;) {
+        for (int v = 0, h = n - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
-        for (int v = 0, h = k - 1; v < h;) {
+        for (int v = 0, h = k - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
-        for (int v = k, h = n - 1; v < h;) {
+        for (int v = k, h = n - 1; v < h; ) {
             Oblig1.bytt(a, v++, h--);
         }
 
-        return a;
     }
 
     ///// Oppgave 7 //////////////////////////////////////
-    // Fikk hjelp fra tidligere student som hadde dette faget.
     /// 7a)
     static String flett(String s, String t) {
         StringBuilder flett = new StringBuilder();
         int lengdePaaArray = Math.max(s.length(), t.length());
 
-         //legger inn verdiene annen hvergang.
         for (int i = 0; i < lengdePaaArray; i++) {
             if (i < s.length()) {
                 flett.append(s.charAt(i));
@@ -228,17 +224,14 @@ class Oblig1 {
     static String flett(String... s) {
         StringBuilder flett = new StringBuilder();
 
-//Vi ser om den er tom
         if (s.length != 0) {
             int lengde = s[0].length();
-// Finner deretter den lengste verdien
+
             for (int i = 0; i < s.length - 1; i++) {
                 if (s[i].length() <= s[i + 1].length()) {
                     lengde += s[i + 1].length();
                 }
             }
-
-            //Kjører på med dobbel for-løkke for å legge til verdi fra hver streng
             for (int i = 0; i < lengde; ++i) {
                 for (String value : s) {
                     if (value.length() > i) {
@@ -252,10 +245,11 @@ class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     static int[] indekssortering(int[] a) {
+        // LAger et nytt array som er like langt som arrayet man skal sortere mtp indeksen.
         int[] arrayMedLengdeSomA = new int[a.length];
-
+        // kopierer a slik at man kan sortere uten å endre på a.
         int[] kopiAvA = Arrays.copyOf(a, a.length);
-
+        // Benytter bubblesort for å løpe gjennom arrayet å finne
         for (int i = 0; i < kopiAvA.length; ++i) {
             for (int j = 0; j < kopiAvA.length - 1; ++j) {
                 if (kopiAvA[j] > kopiAvA[j + 1]) {
@@ -266,6 +260,8 @@ class Oblig1 {
             }
         }
         int i = 0;
+        // Flytter over posisjonen til de forskjellige verdiene over til arrayMedLengdeSomA
+        // slik at det returnerer array sorter med indekssorteringen.
         while (i < kopiAvA.length) {
             for (int j = 0; j < kopiAvA.length; ++j) {
                 if (kopiAvA[i] == a[j]) {
@@ -304,7 +300,7 @@ class Oblig1 {
             int verdi = a[i];
             if (verdi < tredjminstverdi) {
                 if (verdi < nestminstverdi) {
-                     if (verdi < minstverdi) {
+                    if (verdi < minstverdi) {
                         tm = nm;
                         tredjminstverdi = nestminstverdi;
 
@@ -333,29 +329,30 @@ class Oblig1 {
     /*static int bokstavNr(char bokstav) {
         throw new UnsupportedOperationException();
     }
-    Ser ikke ut til å trenge dette.
+    Ser ikke ut til å trenge dette. Så fjerner for å unngå warnings.
      */
 
     static boolean inneholdt(String a, String b) {
-
-        //vi sorterer over dem ved å lage string som char array.
+        // "Endrer" String a og b til Char arrays
         char[] aStringen = a.toCharArray();
         char[] bStringen = b.toCharArray();
-     //   if (a.length() > b.length()) {
-      //      return false;
-       // }
-
-        for (int i = 0; i < aStringen.length; ++i) {
-            char tegn = aStringen[i];
-
-            int antallIA = 0;
-            for(int j= 0; j < aStringen.length; ++j){if(aStringen[j] == tegn) antallIA++;}
-            int antalliB = 0;
-            for(int k = 0; k < bStringen.length; ++k){if (bStringen[k] == tegn) antalliB++;}
-
-            if(antallIA > antalliB)return false;
-
-        }return true;
+        // Lager int array som man sammenligner
+        int[] aString = new int[256], bString = new int[256];
+        // løper igjennom Astringen og legger det i aString
+        for (char c : aStringen) {
+            aString[c]++;
+        }
+        // løper igjennom bstringen og legger det i bString
+        for (char c : bStringen) {
+            bString[c]++;
+        }
+        // Løper igjennom hele int arrayet og sammenligner aString og bString
+        for (int i = 0; i < 256; ++i) {
+            if (aString[i] > bString[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }  // Oblig1
